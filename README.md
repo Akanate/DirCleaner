@@ -1,6 +1,6 @@
 # DirCleaner
 # Background
-1.This is a project which I made myself over the course of three days.
+-This is a project which I made myself over the course of three days.
 ## Features
 -This program has a filter which stops any files which are under three months from being moved.
 
