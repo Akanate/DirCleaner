@@ -1,5 +1,5 @@
 #Get the modules i need
-import os, shutil, time, glob, ctypes, datetime, pathlib, winshell
+import os, shutil, time, glob, ctypes, datetime
 from os.path import expanduser
 #Checks the users have not got admin.
 def admin_check():
