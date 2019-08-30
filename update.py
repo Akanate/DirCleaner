@@ -22,5 +22,5 @@ def update():
         print('Finished update')
     except Exception as e:
         pass
-    make_sure()
+make_sure()
     
