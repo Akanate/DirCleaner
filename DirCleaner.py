@@ -183,23 +183,26 @@ def empty():
                 pass
         print('Finished')
         exit()
-
 def rollback():
-    log_file = open('log.txt','r')
-    for line in log_file:
-        lined = line.strip()
-        paths = lined.split(' moved to ')
-        if len(paths) != 2:
-            continue
-        old = paths[0]
-        new = paths[1]
-        print(f'Reversing changes moving {new} to {old}')
-        shutil.move(new,old)
-    print('Wiped log')
-    f = open('log.txt','w+')
-    f.write('')
-    f.close()
-    junky()
+        try:
+            log_file = open('log.txt','r')
+            for line in log_file:
+                    lined = line.strip()
+                    paths = lined.split(' moved to ')
+                    if len(paths) != 2:
+                        continue
+                    old = paths[0]
+                    new = paths[1]
+                    print(f'Reversing changes moving {new} to {old}')
+                    shutil.move(new,old)
+        except Exception as e:
+            print(f'Could not move {new} to {old} due to: {e}')
+            pass
+        print('Wiped log')
+        f = open('log.txt','w+')
+        f.write('')
+        f.close()
+        junky()
 
 
 admin_check()
