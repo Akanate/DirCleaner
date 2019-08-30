@@ -15,6 +15,7 @@ def update():
     print('Starting update')
     cwd = os.getcwd()
     os.chdir(cwd)
+    os.system('cd ..')
     os.remove('DirCleaner')
     os.system('git clone https://github.com/WHYSOEASY/DirCleaner')
     print('Finished update')
