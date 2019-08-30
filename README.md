@@ -25,7 +25,7 @@
 -It will start scanning your Desktop, Documents and downloads for files which may fit the filter I mentioned above it finds some it will move them to a junk folder on your desktop do not touch this folder as the program will give you a prompt after cleaning. It will say the following Enter if you want to [rollback] the process [search] for a file in the junk or [empty] the junk rollback will put all the files back into their original places. Search will allow you to search for a file in the junk which you may want to move out seperately and empty will delete everything in junk folder.
 ###  Reporting bugs
 -Just put it in the issue part of the repo.
-#What not to touch
+### What not to touch
 -DO NOT by any circumstance touch the log files these are used in the rollback feature.
 ###  Updating
 -Just run the update.py to get the latest version.
