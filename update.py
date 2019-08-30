@@ -12,13 +12,15 @@ def make_sure():
         print('Enter a valid choice')
 
 def update():
-    print('Starting update')
-    cwd = os.getcwd()
-    os.chdir(cwd)
-    os.system('cd ..')
-    os.system('del /F /Q /A DirCleaner')
-    os.system('git clone https://github.com/WHYSOEASY/DirCleaner')
-    print('Finished update')
-
+    try:
+        print('Starting update')
+        cwd = os.getcwd()
+        os.chdir(cwd)
+        os.system('cd ..')
+        os.remove('DirCleaner')
+        os.system('git clone https://github.com/WHYSOEASY/DirCleaner')
+        print('Finished update')
+    except Exception as e:
+        pass
     make_sure()
     
