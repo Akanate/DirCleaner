@@ -26,7 +26,7 @@ def precheck():
         print('Does not exist creating the folder')
         os.mkdir(junk)
         print('Created junk folder continuing')
-        sub_dirs_documents()
+        doc()
 
 #Goes through all files and subdirs in documents looking for files which fit the filter
 def doc():
