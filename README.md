@@ -5,7 +5,7 @@ This is a project which I made myself over the course of three days.
 This program has a filter which stops any files which are under three months from being moved.
 
 
-This program also stops you from running the program as admin
+This program also stops you from running the program as admin.
 
 
 This program also has a rollback system which if you think oh no it has moved a lot of files I dont want it too move let it finish then you will be promped with a text bar saying the following do you want to [search] or [empty] or [rollback] proceed to type in rollback this will move all the files which were moved, back to their original place.
