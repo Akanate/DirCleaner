@@ -18,8 +18,7 @@ You will notice I said move thats because the files are not instantly deleted an
 ### How to use
 First of all git clone or download zip for <https://github.com/WHYSOEASY/DirCleaner.git>
 
-
-![Image](../master/git clone.png)
+<img src="/master/git clone.png" alt="Git clone image">
 
 
 Then proceed to launch DirCleaner.py
