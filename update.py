@@ -1,22 +1,24 @@
 import os
-import requests
-import zipfile
+
+
+def make_sure():
+    print('Make sure to have git terminal installed before running this program')
+    choice = input('Do you have git terminal y/n: ')
+    if choice == 'y':
+        update()
+    elif choice == 'n':
+        exit()
+    else:
+        print('Enter a valid choice')
 
 def update():
     print('Starting update')
     cwd = os.getcwd()
     os.chdir(cwd)
-    os.chdir('../'+cwd)
+    os.system('cd ..')
     os.system('del /F /Q /A DirCleaner')
-    os.system('del /F /Q /A master.zip')
-    requested = requests.get('https://github.com/WHYSOEASY/DirCleaner/archive/master.zip')
-    content = requested.content
-    f  = open('master.zip','wb')
-    f.write(content)
-    f.close()
-    zipped = zipfile.ZipFile('master.zip')
-    zipped.extractall()
+    os.system('git clone https://github.com/WHYSOEASY/DirCleaner')
     print('Finished update')
 
-update()
+    make_sure()
     
