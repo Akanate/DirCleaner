@@ -17,7 +17,11 @@ This program also only moves files which are under a 100 bytes.
 You will notice I said move thats because the files are not instantly deleted and instead moved to a junk folder.
 ### How to use
 First of all git clone or download zip for <https://github.com/WHYSOEASY/DirCleaner.git>
-![Screenshot](git clone.png)
+
+
+![Screenshot] (git clone.png)
+
+
 Then proceed to launch DirCleaner.py
 
 
