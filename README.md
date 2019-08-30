@@ -1,6 +1,6 @@
 # DirCleaner
-# Background
-This is a project which I made myself over the course of three days.
+## Disclaimer
+This program moves files around so you use it at your own risk. But I have implemented features which should stop data loss and clean you computer. But if it does I am not responsible. This program is still in beta stages.
 ## Features
 This program has a filter which stops any files which are under three months from being moved.
 
