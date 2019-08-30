@@ -166,6 +166,7 @@ def search():
             where = input('Where do you want to move it: ')
             shutil.move(searched_up,where)
             print(f'Your file {searched_up} has been moved to {where}')
+            junky()
         else:
             print('invalid option')
             search()
