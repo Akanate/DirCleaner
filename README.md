@@ -17,14 +17,19 @@ This program also only moves files which are under a 100 bytes.
 You will notice I said move thats because the files are not instantly deleted and instead moved to a junk folder.
 ### How to use
 First of all git clone or download zip for <https://github.com/WHYSOEASY/DirCleaner.git>
-
 <img src="git clone.png" alt="Git clone image">
 
-
+<img src="git clone 2.png" alt="Git clone two">
 Then proceed to launch DirCleaner.py
-
-
-It will start scanning your Desktop, Documents and downloads for files which may fit the filter I mentioned above it finds some it will move them to a junk folder on your desktop do not touch this folder as the program will give you a prompt after cleaning. It will say the following Enter if you want to [rollback] the process [search] for a file in the junk or [empty] the junk rollback will put all the files back into their original places. Search will allow you to search for a file in the junk which you may want to move out seperately and empty will delete everything in junk folder.
+<img src="start_program.png" alt="Starting the progran">
+Then after it has cleaned you will be prompted with this.
+<img src="executing_program.png" alt="Executing program">
+Search will allow you to searhc for a file in the junk and move or delete it.
+<img src="search.png" alt="searching">
+Empty will delete all the files in the junk for you
+<img src="empty.png" alt="empty">
+And rollback will look inside the log file and reverse the changes. Putting all the files back from the most recent clean.
+<img src="rollback.png" alt="rollback">
 ###  Reporting bugs
 Just put it in the issue part of the repo.
 ### What not to touch
