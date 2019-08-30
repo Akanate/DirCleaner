@@ -5,5 +5,5 @@ time.sleep(10)
 os.chdir('..')
 os.system('rmdir /q /s DirCleaner')
 os.system('git clone https://github.com/WHYSOEASY/DirCleaner.git')
-print('Update Finished!!!!!')
+print('Update Finished')
 
