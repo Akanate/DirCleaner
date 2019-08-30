@@ -1,4 +1,4 @@
 cd ..
-del /F /Q /A DirCleaner
+rmdir /q /s DirCleaner
 git clone https://github.com/WHYSOEASY/DirCleaner.git
 echo 'Finished update'
