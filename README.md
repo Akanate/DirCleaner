@@ -37,6 +37,6 @@ Just put it in the issue part of the repo.
 ### What not to touch
 DO NOT by any circumstance touch the log files these are used in the rollback feature.
 ### Updating
-Just run the update.py to get the latest version.
+Just run the update.py to get the latest version on windows but run update.sh if you are on a Linux/unix bases os.
 ### How does it work
 Well the way it works is the program will go through all the directories and subdirectories in documents desktop and downloads looking for files which are over three months old and are lower than a 100 bytes. It will then if it finds any move them to the junk folder where they will be stored. Until you decide if you want to empty the junk rollback the process or search inside the junk to move some files out.
