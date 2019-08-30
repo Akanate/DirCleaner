@@ -6,7 +6,7 @@ def update():
     print('Starting update')
     cwd = os.getcwd()
     os.chdir(cwd)
-    os.system('cd ..')
+    os.chdir('../'+cwd)
     os.system('del /F /Q /A DirCleaner')
     os.system('del /F /Q /A master.zip')
     requested = requests.get('https://github.com/WHYSOEASY/DirCleaner/archive/master.zip')
