@@ -131,11 +131,15 @@ def temp_it():
     print('Removing trash temp file')
     for directories,_ , filenames in os.walk(temp):
         for i in filenames:
-            temporary = os.path.join(directories,i)
-            if temporary.endswith('*.tmp'):
-                os.remove(temporary)
-                print('Removed {temporary}')
-                counter += 1
+            try:
+                temporary = os.path.join(directories,i)
+                if temporary.endswith('*.tmp'):
+                    os.remove(temporary)
+                    print('Removed {temporary}')
+                    counter += 1
+             except Exception as e:
+                print(f'Could not remove {temporary} due to:{e}')
+                pass
     print(f'Removed a total of {counter} temp files')
     junky()
     
