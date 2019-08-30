@@ -24,15 +24,17 @@ Then proceed to launch DirCleaner.py
 <img src="start_program.png" alt="Starting the progran">
 Then after it has cleaned you will be prompted with this.
 <img src="executing_program.png" alt="Executing program">
-Search will allow you to searhc for a file in the junk and move or delete it.
+Search will allow you to search for a file in the junk and move or delete it.
 <img src="search.png" alt="searching">
 Empty will delete all the files in the junk for you
 <img src="empty.png" alt="empty">
 And rollback will look inside the log file and reverse the changes. Putting all the files back from the most recent clean.
 <img src="rollback.png" alt="rollback">
-###  Reporting bugs
+
+
+### Reporting bugs
 Just put it in the issue part of the repo.
 ### What not to touch
 DO NOT by any circumstance touch the log files these are used in the rollback feature.
-###  Updating
+### Updating
 Just run the update.py to get the latest version.
