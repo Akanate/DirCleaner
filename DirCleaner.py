@@ -172,7 +172,7 @@ def search():
             search()
     else:
         print('That file does not exist')
-        juny()
+        junky()
 
 def empty():
     junk = os.path.expanduser('~/Desktop/junk')
