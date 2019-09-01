@@ -27,7 +27,7 @@ Then after it has cleaned up yoir files, you will be prompted with this.
 Search will allow you to search for a file in the junk and move or delete it.
 <img src="search.png" alt="searching">
 Empty will delete all the files in the junk for you.
-<img src="empty.png" alt="empty">
+<img src="155ED3CE-19D4-4E96-99D1-3759E444483C.png" alt="empty">
 And rollback will look inside the log file and reverse the changes, putting all the files back to where they were.
 <img src="rollback.png" alt="rollback">
 
