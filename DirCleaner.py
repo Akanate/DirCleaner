@@ -1,7 +1,16 @@
 # Get the modules needed.
-import os, shutil, time, glob, ctypes, datetime
+import os, shutil, time, glob, ctypes, datetime, configparser
 from os.path import expanduser
-# Checks the user is not admin.
+
+# configparser set up.
+config = configparser.ConfigParser()
+config.read("script.config")
+
+# Config variables.
+minperiod = config.get("MAIN", "minperiod")
+minsize = config.get("MAIN", "minsize")
+
+# Checks if the user is an admin.
 def admin_check():
     print('Checking this program is not running as admin...')
     try:
@@ -15,7 +24,7 @@ def admin_check():
             print("You're all clear. Continuing...")
             precheck()
 
-# Checks if you have a junk folder/creates one if none exists
+# Checks if you have a junk folder/creates one if none exists.
 def precheck():
     print('Checking for junk folder...')
     junk = expanduser('~/Desktop/junk')
@@ -28,10 +37,10 @@ def precheck():
         print('Created junk folder. Continuing...')
         doc()
 
-#Goes through all files and subdirs in documents looking for files which fit the filter
+# Goes through all files and subdirs in Documents looking for files which fit the filter
 def doc():
     counter = 0
-    print('Cleaning documents folder...')
+    print('Cleaning Documents folder...')
     home = os.path.expanduser('~/Documents')
     junk = expanduser('~/Desktop/junk')
     for directory, _, filenames in os.walk(home):        
@@ -43,9 +52,9 @@ def doc():
                 then = datetime.datetime.fromtimestamp(os.path.getmtime(from_path))
                 tdelta = now - then
                 seconds = tdelta.total_seconds()
-                if seconds > 7884000:
+                if seconds > minperiod:
                     if from_path != to_path:
-                        if os.stat(from_path).st_size < 100:
+                        if os.stat(from_path).st_size < minsize:
                             shutil.move(from_path,to_path)
                             f = open('log.txt','a')
                             f.write('\n')
@@ -64,7 +73,7 @@ def doc():
 # Goes through all files and subdirs in the Desktop folder, looking for files which fit the filter.
 def desk():
     counter = 0
-    print('Cleaning Desktop...')
+    print('Cleaning Desktop folder...')
     home = os.path.expanduser('~/Desktop')
     junk = expanduser('~/Desktop/junk')
     for directory, _, filenames in os.walk(home):        
@@ -76,8 +85,8 @@ def desk():
                 then = datetime.datetime.fromtimestamp(os.path.getmtime(from_path))
                 tdelta = now - then
                 seconds = tdelta.total_seconds()
-                if seconds > 7884000:
-                    if os.stat(from_path).st_size < 100:
+                if seconds > minperiod:
+                    if os.stat(from_path).st_size < minsize:
                         shutil.move(from_path,to_path)
                         f = open('log.txt','a') 
                         f.write('\n')
@@ -108,8 +117,8 @@ def down():
                 then = datetime.datetime.fromtimestamp(os.path.getmtime(from_path))
                 tdelta = now - then
                 seconds = tdelta.total_seconds()
-                if seconds > 7884000:
-                    if os.stat(from_path).st_size < 100:
+                if seconds > minperiod:
+                    if os.stat(from_path).st_size < minsize:
                         shutil.move(from_path,to_path)
                         f = open('log.txt','a') 
                         f.write('\n')
