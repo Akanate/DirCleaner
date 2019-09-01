@@ -16,7 +16,7 @@ This program also only moves files which are under 100 bytes in size.
 
 You will notice I said move. That's because the files are not instantly deleted, and instead moved to a junk folder.
 ### How to use
-First of all, use `git clone‘` or download the ZIP from <https://github.com/WHYSOEASY/DirCleaner.git>.
+First of all, use `git clone` or download the ZIP from <https://github.com/WHYSOEASY/DirCleaner.git>.
 <img src="git clone.png" alt="Git clone image">
 
 <img src="git clone 2.png" alt="Git clone two">
