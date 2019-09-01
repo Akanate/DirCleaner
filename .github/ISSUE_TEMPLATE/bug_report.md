@@ -25,7 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Device (please complete the following information):**
  - OS: [e.g. Windows]
- - DirCleaner version: [e.g. 22, find in info.txt]
+ - DirCleaner version: [e.g. 1.0.0, find in info.txt]
 
 **Additional context**
 Add any other context about the problem here.
