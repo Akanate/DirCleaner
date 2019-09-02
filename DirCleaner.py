@@ -6,10 +6,12 @@ from os.path import expanduser
 config = configparser.ConfigParser()
 config.read("script.config")
 
-# Config variables.
+#Config variables.
 minperiod = config.get("MAIN", "minperiod")
 minsize = config.get("MAIN", "minsize")
 checkadmin = config.get("MAIN", "checkadmin")
+new_minsize = int(minsize)
+new_minperiod = int(minperiod)
 
 # Checks if the user is an admin.
 def admin_check():
@@ -56,10 +58,10 @@ def doc():
                 now = datetime.datetime.now()
                 then = datetime.datetime.fromtimestamp(os.path.getmtime(from_path))
                 tdelta = now - then
-                seconds = tdelta.total_seconds()
-                if seconds > minperiod:
+                seconds = tdelta.total_seconds(
+                if seconds > new_minperiod:
                     if from_path != to_path:
-                        if os.stat(from_path).st_size < minsize:
+                        if os.stat(from_path).st_size < new_minsize:
                             shutil.move(from_path,to_path)
                             f = open('log.txt','a')
                             f.write('\n')
@@ -91,7 +93,7 @@ def desk():
                 tdelta = now - then
                 seconds = tdelta.total_seconds()
                 if seconds > minperiod:
-                    if os.stat(from_path).st_size < minsize:
+                    if os.stat(from_path).st_size < new_minsize:
                         shutil.move(from_path,to_path)
                         f = open('log.txt','a') 
                         f.write('\n')
@@ -122,8 +124,8 @@ def down():
                 then = datetime.datetime.fromtimestamp(os.path.getmtime(from_path))
                 tdelta = now - then
                 seconds = tdelta.total_seconds()
-                if seconds > minperiod:
-                    if os.stat(from_path).st_size < minsize:
+                if seconds > new_minperiod:
+                    if os.stat(from_path).st_size < new_minsize:
                         shutil.move(from_path,to_path)
                         f = open('log.txt','a') 
                         f.write('\n')
