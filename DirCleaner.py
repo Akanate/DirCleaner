@@ -13,7 +13,7 @@ checkadmin = config.get("MAIN", "checkadmin")
 new_minsize = int(minsize)
 new_minperiod = int(minperiod)
 
-# Checks if the user is an admin.
+# Checks for an update
 def update_check():
     print('Checking for updates...')
     contents = requests.get('https://raw.githubusercontent.com/WHYSOEASY/DirCleaner/master/info.txt')
@@ -34,7 +34,7 @@ def update_check():
         else:
             print('Most recent version continuing')
             admin_check()
-
+#Checks if the user is an admin
 def admin_check():
     if checkadmin == True:
         print('Checking this program is not running as admin...')
