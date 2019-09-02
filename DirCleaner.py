@@ -23,7 +23,7 @@ def update_check():
     g = open('new_info.txt','a')
     g.write(newer_contents1)
     g.close()
-    t = open('new_info.txt','a')
+    t = open('new_info.txt','r')
     newer_contents = t.read().strip() 
     with open('info.txt','r') as f:
         if f != newer_contents:
