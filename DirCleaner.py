@@ -29,6 +29,7 @@ def update_check():
         contents = f.read().strip()
         if contents != newer_contents:
             print('New update available applying update')
+            print(f'{newer_contents}')
             check = expanduser('~/Appdata/Local/Temp')
             if os.path.exists(check):
                 print('Windows detected you need to run update.py')
