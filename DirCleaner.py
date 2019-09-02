@@ -9,9 +9,11 @@ config.read("script.config")
 # Config variables.
 minperiod = config.get("MAIN", "minperiod")
 minsize = config.get("MAIN", "minsize")
+checkadmin = config.get("MAIN", "checkadmin")
 
 # Checks if the user is an admin.
 def admin_check():
+  if checkadmin = True
     print('Checking this program is not running as admin...')
     try:
         is_admin = os.getuid() == 0
@@ -23,6 +25,9 @@ def admin_check():
         else:
             print("You're all clear. Continuing...")
             precheck()
+  else:
+    print("Skipping admin check...")
+    precheck()
 
 # Checks if you have a junk folder/creates one if none exists.
 def precheck():

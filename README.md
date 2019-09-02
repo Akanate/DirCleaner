@@ -45,6 +45,9 @@ Like this? Please star this project to show your support :)
 ### Update log
 Make sure to consistently run update.py/.sh (depending on your OS).
 
-
+0.1.1:
 - Fixed an error where function `junky` was spelt wrong on the move part of the search option.
-- Lots of changes including grammer changes in README.md and config changes to the program have been made by RexoGamer
+0.2.0:
+- Lots of changes including grammar fixes and config changes to the program have been made by @Rexogamer.
+0.2.1:
+- You can now disable the admin check in `script.config`.
