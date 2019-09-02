@@ -1,49 +1,49 @@
 # DirCleaner
 ## Disclaimer
-This program moves files around so you use it at your own risk. But I have implemented features which should stop data loss and clean you computer. But if it does I am not responsible. This program is still in beta stages.
+This program moves files around; use it at your own risk. I have implemented features which should stop data loss, but if it does, I am not responsible. This program is still in beta.
 ## Features
-This program has a filter which stops any files which are under three months from being moved.
+This program has a filter which stops any files which are younger than 3 months from being moved.
 
 
-This program also stops you from running the program as admin.
+This program also prevents you from running it as an admin.
 
 
-This program also has a rollback system which if you think oh no it has moved a lot of files I dont want it too move let it finish then you will be promped with a text bar saying the following do you want to [search] or [empty] or [rollback] proceed to type in rollback this will move all the files which were moved, back to their original place.
+This program also has a rollback system, so if you think "oh no, it has moved a lot of files I dont want it to move", let it finish, then you will be prompted with a text bar saying the following: "Do you want to [search], [empty] or [rollback]?" Proceed to type in rollback. This will move all the files which were moved back to their original place.
 
 
-This program also only moves files which are under a 100 bytes.
+This program also only moves files which are under 100 bytes in size.
 
 
-You will notice I said move thats because the files are not instantly deleted and instead moved to a junk folder.
+You will notice I said move. That's because the files are not instantly deleted, and instead moved to a junk folder.
 ### How to use
-First of all git clone or download zip for <https://github.com/WHYSOEASY/DirCleaner.git>
+First of all, use `git clone` or download the ZIP from <https://github.com/WHYSOEASY/DirCleaner.git>.
 <img src="git clone.png" alt="Git clone image">
 
 <img src="git clone 2.png" alt="Git clone two">
-Then proceed to launch DirCleaner.py
+Then proceed to launch DirCleaner.py.
 <img src="start_program.png" alt="Starting the progran">
-Then after it has cleaned you will be prompted with this.
+Then after it has cleaned up yoir files, you will be prompted with this.
 <img src="executing_program.png" alt="Executing program">
 Search will allow you to search for a file in the junk and move or delete it.
 <img src="search.png" alt="searching">
-Empty will delete all the files in the junk for you
-<img src="empty.png" alt="empty">
-And rollback will look inside the log file and reverse the changes. Putting all the files back from the most recent clean.
+Empty will delete all the files in the junk for you.
+<img src="155ED3CE-19D4-4E96-99D1-3759E444483C.png" alt="empty">
+And rollback will look inside the log file and reverse the changes, putting all the files back to where they were.
 <img src="rollback.png" alt="rollback">
 
 
 ### Reporting bugs
-Just put it in the issue part of the repo.
+Make a new issue in the repo.
 ### What not to touch
 DO NOT by any circumstance touch the log files these are used in the rollback feature.
 ### Updating
-Just run the update.py to get the latest version on windows but run update.sh if you are on a Linux/unix based os’s.
-### How does it work
-Well the way it works is the program will go through all the directories and subdirectories in documents desktop and downloads looking for files which are over three months old and are lower than a 100 bytes. It will then if it finds any move them to the junk folder where they will be stored. Until you decide if you want to empty the junk rollback the process or search inside the junk to move some files out.
-### Make sure to rate
-Please star this project to try to show your support :)
+Just run update.py to get the latest version on Windows. Run update.sh if you are on Linux/any other Unix-based OS.
+### How does it work?
+The program goes through all the directories and subdirectories in Documents, Desktop and Downloads, looking for files which are over the minimum age set in `script.config` and are lower than the maximum size set in `script.config`. If it finds any, it moves them to the junk folder where they are stored until you decide if you want to empty the junk folder, rollback the process or search inside the junk to move some files out.
+### Make sure to rate!
+Like this? Please star this project to show your support :)
 ### Update log
-Make sure to consistently run update.py or .sh depending on your version
+Make sure to consistently run update.py/.sh (depending on your OS).
 
 
-Fixed an error where function junky was spelt wrong on the move part of the search option so that is now fixed.
+- Fixed an error where function `junky` was spelt wrong on the move part of the search option.
