@@ -47,3 +47,4 @@ Make sure to consistently run update.py/.sh (depending on your OS).
 
 
 - Fixed an error where function `junky` was spelt wrong on the move part of the search option.
+- Lots of changes including grammer changes in README.md and config changes to the program have been made by RexoGamer
