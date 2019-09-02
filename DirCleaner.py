@@ -1,5 +1,5 @@
 # Get the modules needed.
-import os, shutil, time, glob, ctypes, datetime, configparser
+import os, shutil, time, glob, ctypes, datetime, configparser, requests
 from os.path import expanduser
 
 # configparser set up.
@@ -14,6 +14,27 @@ new_minsize = int(minsize)
 new_minperiod = int(minperiod)
 
 # Checks if the user is an admin.
+def update_check():
+    print('Checking for updates...')
+    contents = requests.get('https://raw.githubusercontent.com/WHYSOEASY/DirCleaner/master/info.txt')
+    contented = contents.content
+    new_contents = contented.decode()
+    newer_contents = new_contents.strip()
+    print(newer_contents)
+    with open('info.txt','r') as f:
+        if f != newer_contents:
+            print('New update available applying update')
+            check = expanduser('~/Appdata/Local/Temp')
+            if os.path.exists(check):
+                print('Windows detected you need to run update.py')
+                exit()
+            else:
+                print('Other os detected you need to run update.sh')
+                exit()
+        else:
+            print('Most recent version continuing')
+            admin_check()
+
 def admin_check():
     if checkadmin == True:
         print('Checking this program is not running as admin...')
@@ -140,7 +161,7 @@ def down():
                     print(f'Cannot move {from_path}. Reason: {e}')
         print(f'Moved {counter} amount of junk files.')
         temp_it()
-
+#Only works on windows checks temp folder looking for trash temp files.
 def temp_it():
     counter = 0
     temp = expanduser('~/Appdata/Local/Temp')
@@ -158,7 +179,8 @@ def temp_it():
                 pass
     print(f'Removed a total of {counter} temp files.')
     confirm()
-    
+
+#Choose your options
 def confirm():
     choice = input('Enter if you want to: [rollback] the process, [search] for a file in the junk folder or [empty] the junk folder: ')
     if choice == 'search':
@@ -170,8 +192,7 @@ def confirm():
     else:
         print('Enter a valid choice.')
         confirm()
-    
-
+#Searches for files in junk folder
 def search():
     junk = os.path.expanduser('~/Desktop/junk')
     searched = input('Enter the file you want to search for: ')
@@ -189,7 +210,7 @@ def search():
     else:
         print('That file does not exist.')
         confirm()
-
+#Clears the junk
 def empty():
     junk = os.path.expanduser('~/Desktop/junk')
     print('Emptying the junk folder...')
@@ -204,6 +225,7 @@ def empty():
                 pass
         print('Finished.')
         exit()
+#Reverses changes made by the program.
 def rollback():
         try:
             log_file = open('log.txt','r')
@@ -226,4 +248,4 @@ def rollback():
         confirm()
 
 
-admin_check()
+update_check()
