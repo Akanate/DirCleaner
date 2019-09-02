@@ -57,3 +57,5 @@ Make sure to consistently run update.py/.sh (depending on your OS).
 - Massive amount of bug fixes due to the fact that the config parser uses strings not integers and lots of indentation errors all fixed.
 ##### 0.2.4
 - Update checkup added
+##### 0.2.5
+- Fixed loads of bugs with update checkup and stopped admin checkup from skipping even if it was true
