@@ -26,7 +26,8 @@ def update_check():
     t = open('new_info.txt','r')
     newer_contents = t.read().strip() 
     with open('info.txt','r') as f:
-        if f != newer_contents:
+        contents = f.read()
+        if contents != newer_contents:
             print('New update available applying update')
             check = expanduser('~/Appdata/Local/Temp')
             if os.path.exists(check):
