@@ -41,11 +41,14 @@ DO NOT by any circumstance touch the log files these are used in the rollback fe
 ### Updating
 Just run update.py to get the latest version on Windows. Run update.sh if you are on Linux/any other Unix-based OS.
 ### How does it work?
-The program goes through all the directories and subdirectories in Documents, Desktop and Downloads, looking for files which are over the minimum age set in `script.config` and are lower than the maximum size set in `script.config`. If it finds any, it moves them to the junk folder where they are stored until you decide if you want to empty the junk folder, rollback the process or search inside the junk to move some files out.
+- The program goes through all the directories and subdirectories in Documents, Desktop and Downloads, looking for files which are over the minimum age set in `script.config` and are lower than the maximum size set in `script.config`. If it finds any, it moves them to the junk folder where they are stored until you decide if you want to empty the junk folder, rollback the process or search inside the junk to move some files out.
+### Extra config
+- If you want to change the configuration of what files are classed as junk. Go to `script.config` and change the config for it
+but be wary the configuration for the age of the files is in seconds so if you want to change it you need to put it in seconds by default it is set 3 months to stop the risk of moving important files and set too a 100 bytes.
 ### Make sure to rate!
-Like this? Please star this project to show your support :)
+- Like this? Please star this project to show your support :)
 ### Update log
-Make sure to consistently run update.py/.sh (depending on your OS).
+- Make sure to consistently run update.py/.sh (depending on your OS).
 
 ##### 0.1.1
 - Fixed an error where function `junky` was spelt wrong on the move part of the search option.
