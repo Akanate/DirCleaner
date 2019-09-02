@@ -25,9 +25,9 @@ def admin_check():
            else:
                print("You're all clear. Continuing...")
                precheck()
-  else:
-    print("Skipping admin check...")
-    precheck()
+    else:
+        print("Skipping admin check...")
+        precheck()
 
 # Checks if you have a junk folder/creates one if none exists.
 def precheck():
