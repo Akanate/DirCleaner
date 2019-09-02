@@ -92,7 +92,7 @@ def desk():
                 then = datetime.datetime.fromtimestamp(os.path.getmtime(from_path))
                 tdelta = now - then
                 seconds = tdelta.total_seconds()
-                if seconds > minperiod:
+                if seconds > new_minperiod:
                     if os.stat(from_path).st_size < new_minsize:
                         shutil.move(from_path,to_path)
                         f = open('log.txt','a') 
