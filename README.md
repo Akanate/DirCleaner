@@ -22,7 +22,7 @@ First of all, use `git clone` or download the ZIP from <https://github.com/WHYSO
 <img src="git clone 2.png" alt="Git clone two">
 Then proceed to launch DirCleaner.py.
 <img src="start_program.png" alt="Starting the progran">
-Then after it has cleaned up yoir files, you will be prompted with this.
+Then after it has cleaned up your files, you will be prompted with this.
 <img src="executing_program.png" alt="Executing program">
 Search will allow you to search for a file in the junk and move or delete it.
 <img src="search.png" alt="searching">
