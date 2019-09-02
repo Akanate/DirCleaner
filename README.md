@@ -51,3 +51,5 @@ Make sure to consistently run update.py/.sh (depending on your OS).
 - Lots of changes including grammar fixes and config changes to the program have been made by @Rexogamer.
 0.2.1:
 - You can now disable the admin check in `script.config`.
+0.2.2:
+- Fixed indentation and syntax errors that were made in the previous update on accident by RexoGamer
