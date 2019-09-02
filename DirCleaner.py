@@ -25,6 +25,8 @@ def update_check():
     g.close()
     t = open('new_info.txt','r')
     newer_contents = t.read().strip() 
+    t.close()
+    os.remove('new_info.txt')
     with open('info.txt','r') as f:
         contents = f.read().strip()
         if contents != newer_contents:
