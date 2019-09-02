@@ -21,7 +21,7 @@ First of all, use `git clone` or download the ZIP from <https://github.com/WHYSO
 
 <img src="git clone 2.png" alt="Git clone two">
 Then `cd` into the DirCleaner directory
-<img src="cd.png" alt="cd">
+<img src="cd.jpg" alt="cd">
 Then proceed to launch DirCleaner.py.
 <img src="start_program.png" alt="Starting the progran">
 Then after it has cleaned up your files, you will be prompted with this.
@@ -29,7 +29,7 @@ Then after it has cleaned up your files, you will be prompted with this.
 Search will allow you to search for a file in the junk and move or delete it.
 <img src="search.png" alt="searching">
 Empty will delete all the files in the junk for you.
-<img src="155ED3CE-19D4-4E96-99D1-3759E444483C.png" alt="empty">
+<img src="/assets/155ED3CE-19D4-4E96-99D1-3759E444483C.png" alt="empty">
 And rollback will look inside the log file and reverse the changes, putting all the files back to where they were.
 <img src="rollback.png" alt="rollback">
 
