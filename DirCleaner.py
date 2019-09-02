@@ -44,7 +44,7 @@ def update_check():
             admin_check()
 #Checks if the user is an admin
 def admin_check():
-    if checkadmin == True:
+    if checkadmin == 'True':
         print('Checking this program is not running as admin...')
         try:
            is_admin = os.getuid() == 0
