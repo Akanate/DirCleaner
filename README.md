@@ -16,22 +16,22 @@ This program also only moves files which are under 100 bytes in size.
 
 You will notice I said move. That's because the files are not instantly deleted, and instead moved to a junk folder.
 ### How to use
-First of all, use `git clone` or download the ZIP from <https://github.com/WHYSOEASY/DirCleaner.git>.
-<img src="git clone.png" alt="Git clone image">
+First of all, use git clone or download the ZIP from <https://github.com/WHYSOEASY/DirCleaner.git>.
+<img src="/assetsgit clone.png" alt="Git clone image">
 
-<img src="git clone 2.png" alt="Git clone two">
-Then `cd` into the DirCleaner directory
-<img src="cd.jpg" alt="cd">
+<img src="/assets/git clone 2.png" alt="Git clone two">
+Then cd  into the DirCleaner directory
+<img src="/assets/cd.jpg" alt="cd">
 Then proceed to launch DirCleaner.py.
-<img src="start_program.png" alt="Starting the progran">
+<img src="/assets/start_program.png" alt="Starting the progran">
 Then after it has cleaned up your files, you will be prompted with this.
-<img src="executing_program.png" alt="Executing program">
+<img src="/assets/executing_program.png" alt="Executing program">
 Search will allow you to search for a file in the junk and move or delete it.
-<img src="search.png" alt="searching">
+<img src="/assets/search.png" alt="searching">
 Empty will delete all the files in the junk for you.
 <img src="/assets/155ED3CE-19D4-4E96-99D1-3759E444483C.png" alt="empty">
 And rollback will look inside the log file and reverse the changes, putting all the files back to where they were.
-<img src="rollback.png" alt="rollback">
+<img src="/assets/rollback.png" alt="rollback">
 
 
 ### Reporting bugs
