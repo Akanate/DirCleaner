@@ -13,18 +13,18 @@ checkadmin = config.get("MAIN", "checkadmin")
 
 # Checks if the user is an admin.
 def admin_check():
-  if checkadmin == True:
-      print('Checking this program is not running as admin...')
-      try:
-         is_admin = os.getuid() == 0
-      except AttributeError:
-         is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
-         if is_admin == True:
-            print('You need to run this program without admin privileges. This is to prevent data loss.')
-            exit()
-        else:
-            print("You're all clear. Continuing...")
-            precheck()
+    if checkadmin == True:
+        print('Checking this program is not running as admin...')
+        try:
+           is_admin = os.getuid() == 0
+        except AttributeError:
+           is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
+           if is_admin == True:
+               print('You need to run this program without admin privileges. This is to prevent data loss.')
+               exit()
+           else:
+               print("You're all clear. Continuing...")
+               precheck()
   else:
     print("Skipping admin check...")
     precheck()
