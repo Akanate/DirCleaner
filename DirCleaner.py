@@ -21,7 +21,7 @@ def update_check():
     new_contents = contented.decode()
     newer_contents1 = new_contents.strip()
     g = open('new_info.txt','a')
-    g.write(newer_contents)
+    g.write(newer_contents1)
     g.close()
     t = open('new_info.txt','a')
     newer_contents = t.read().strip() 
