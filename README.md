@@ -45,11 +45,11 @@ Like this? Please star this project to show your support :)
 ### Update log
 Make sure to consistently run update.py/.sh (depending on your OS).
 
-0.1.1:
+##### 0.1.1
 - Fixed an error where function `junky` was spelt wrong on the move part of the search option.
-0.2.0:
+##### 0.2.0
 - Lots of changes including grammar fixes and config changes to the program have been made by @Rexogamer.
-0.2.1:
+##### 0.2.1
 - You can now disable the admin check in `script.config`.
-0.2.2:
+##### 0.2.2
 - Fixed indentation and syntax errors that were made in the previous update on accident by RexoGamer
