@@ -58,7 +58,7 @@ def doc():
                 now = datetime.datetime.now()
                 then = datetime.datetime.fromtimestamp(os.path.getmtime(from_path))
                 tdelta = now - then
-                seconds = tdelta.total_seconds(
+                seconds = tdelta.total_seconds()
                 if seconds > new_minperiod:
                     if from_path != to_path:
                         if os.stat(from_path).st_size < new_minsize:
