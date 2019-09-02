@@ -151,7 +151,7 @@ def temp_it():
                     os.remove(temporary)
                     print('Removed {temporary}.')
                     counter += 1
-             except Exception as e:
+            except Exception as e:
                 print(f'Could not remove {temporary} due to:{e}')
                 pass
     print(f'Removed a total of {counter} temp files.')
