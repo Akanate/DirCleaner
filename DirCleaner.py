@@ -19,8 +19,12 @@ def update_check():
     contents = requests.get('https://raw.githubusercontent.com/WHYSOEASY/DirCleaner/master/info.txt')
     contented = contents.content
     new_contents = contented.decode()
-    newer_contents = new_contents.strip()
-    print(newer_contents)
+    newer_contents1 = new_contents.strip()
+    g = open('new_info.txt','a')
+    g.write(newer_contents)
+    g.close()
+    t = open('new_info.txt','a')
+    newer_contents = t.read().strip() 
     with open('info.txt','r') as f:
         if f != newer_contents:
             print('New update available applying update')
