@@ -20,6 +20,8 @@ First of all, use `git clone` or download the ZIP from <https://github.com/WHYSO
 <img src="git clone.png" alt="Git clone image">
 
 <img src="git clone 2.png" alt="Git clone two">
+Then `cd` into the DirCleaner directory
+<img src="cd.png" alt="cd">
 Then proceed to launch DirCleaner.py.
 <img src="start_program.png" alt="Starting the progran">
 Then after it has cleaned up your files, you will be prompted with this.
