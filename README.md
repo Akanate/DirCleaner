@@ -68,3 +68,5 @@ but be wary the configuration for the age of the files is in seconds so if you w
 - Fixed a massive big which would make it so then it would not go through sub directories at all. 
 ##### 1.0.1
 - Minor changes
+##### 1.0.2
+- Complete code cleanup for optimisation.
