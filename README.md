@@ -66,3 +66,5 @@ but be wary the configuration for the age of the files is in seconds so if you w
 - Fixed loads of bugs with update checkup and stopped admin checkup from skipping even if it was true
 ##### 1.00
 - Fixed a massive big which would make it so then it would not go through sub directories at all. 
+##### 1.0.1
+- Minor changes
