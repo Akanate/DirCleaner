@@ -13,6 +13,7 @@ class Cleaner:
         self.checkadmin = config.get("MAIN", "checkadmin")
         self.new_minsize = int(self.minsize)
         self.new_minperiod = int(self.minperiod)
+        #Path Variables
         self.junk = os.path.expanduser('~/Desktop/junk')
         self.desktop = os.path.expanduser('~/Desktop')
         self.documents = os.path.expanduser('~/Documents')
