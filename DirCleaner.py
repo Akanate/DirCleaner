@@ -99,7 +99,7 @@ def doc():
 # Goes through all files and subdirs in the Desktop folder, looking for files which fit the filter.
 def desk():
     counter = 0
-    print('Starting cleaning')
+    print('Starting cleaning desktop')
     home = os.path.expanduser('~/Desktop')
     junk = expanduser('~/Desktop/junk')
     for directory, _, filenames in os.walk(home):        
