@@ -76,7 +76,7 @@ def precheck():
 # Goes through all files and subdirs in Documents looking for files which fit the filter
 def doc():
     counter = 0
-    print('Cleaning Documents folder...')
+    print('Starting cleaning documents...')
     home = os.path.expanduser('~/Documents')
     junk = expanduser('~/Desktop/junk')
     for directory, _, filenames in os.walk(home):        
@@ -84,32 +84,22 @@ def doc():
             try:
                 from_path = os.path.join(directory,filename)
                 to_path = os.path.join(junk,filename)
-                now = datetime.datetime.now()
-                then = datetime.datetime.fromtimestamp(os.path.getmtime(from_path))
-                tdelta = now - then
-                seconds = tdelta.total_seconds()
-                if seconds > new_minperiod:
-                    if from_path != to_path:
-                        if os.stat(from_path).st_size < new_minsize:
-                            shutil.move(from_path,to_path)
-                            f = open('log.txt','a')
-                            f.write('\n')
-                            f.write(from_path+' moved to '+to_path)
-                            f.close()
-                            counter += 1
-                            print(f'Moved {from_path} to {to_path}')
-                        else:
-                            # print(f'skipped {from_path}')
-                            pass
+                if os.stat(from_path).st_size < new_minsize and time.time() - os.path.getmtime(from_path) > (new_minperiod):
+                    shutil.move(from_path,to_path)
+                    counter += 1
+                    print(f'Moved {from_path} to {to_path}')
+                else:
+                    #print(f'skipped {from_path}')
+                    pass
             except Exception as e:
-                    print(f'Cannot move {from_path} reason: {e}')
-        print(f'Moved {counter} amount of junk files')
-        desk()
+                print(f'Cannot move {from_path} reason: {e}')
+    print(f'Moved {counter} amount of junk files')
+    desk()
 
 # Goes through all files and subdirs in the Desktop folder, looking for files which fit the filter.
 def desk():
     counter = 0
-    print('Cleaning Desktop folder...')
+    print('Starting cleaning')
     home = os.path.expanduser('~/Desktop')
     junk = expanduser('~/Desktop/junk')
     for directory, _, filenames in os.walk(home):        
@@ -117,31 +107,21 @@ def desk():
             try:
                 from_path = os.path.join(directory,filename)
                 to_path = os.path.join(junk,filename)
-                now = datetime.datetime.now()
-                then = datetime.datetime.fromtimestamp(os.path.getmtime(from_path))
-                tdelta = now - then
-                seconds = tdelta.total_seconds()
-                if seconds > new_minperiod:
-                    if os.stat(from_path).st_size < new_minsize:
-                        shutil.move(from_path,to_path)
-                        f = open('log.txt','a') 
-                        f.write('\n')
-                        f.write(from_path+' moved to '+to_path)
-                        f.close()
-                        counter += 1
-                        print(f'Moved {from_path} to {to_path}.')
-                    else:
-                        # print(f'skipped {from_path}')
-                        pass
+                if os.stat(from_path).st_size < new_minsize and time.time() - os.path.getmtime(from_path) > (new_minperiod):
+                    shutil.move(from_path,to_path)
+                    counter += 1
+                    print(f'Moved {from_path} to {to_path}')
+                else:
+                    #print(f'skipped {from_path}')
+                    pass
             except Exception as e:
-                    print(f'Cannot move {from_path}. Reason: {e}')
-        print(f'Moved {counter} amount of junk files.')
-        down()
-
+                print(f'Cannot move {from_path} reason: {e}')
+    print(f'Moved {counter} amount of junk files')
+    down()
 # Goes through all files and subdirs in the Downloads folder, looking for files which fit the filter.
 def down():
     counter = 0
-    print('Cleaning Downloads...')
+    print('Starting cleaning')
     home = os.path.expanduser('~/Downloads')
     junk = expanduser('~/Desktop/junk')
     for directory, _, filenames in os.walk(home):        
@@ -149,26 +129,18 @@ def down():
             try:
                 from_path = os.path.join(directory,filename)
                 to_path = os.path.join(junk,filename)
-                now = datetime.datetime.now()
-                then = datetime.datetime.fromtimestamp(os.path.getmtime(from_path))
-                tdelta = now - then
-                seconds = tdelta.total_seconds()
-                if seconds > new_minperiod:
-                    if os.stat(from_path).st_size < new_minsize:
-                        shutil.move(from_path,to_path)
-                        f = open('log.txt','a') 
-                        f.write('\n')
-                        f.write(from_path+' moved to '+to_path)
-                        f.close()
-                        counter += 1
-                        print(f'Moved {from_path} to {to_path}')
-                    else:
-                        # print(f'skipped {from_path}')
-                        pass
+                if os.stat(from_path).st_size < new_minsize and time.time() - os.path.getmtime(from_path) > (new_minperiod):
+                    shutil.move(from_path,to_path)
+                    counter += 1
+                    print(f'Moved {from_path} to {to_path}')
+                else:
+                    #print(f'skipped {from_path}')
+                    pass
             except Exception as e:
-                    print(f'Cannot move {from_path}. Reason: {e}')
-        print(f'Moved {counter} amount of junk files.')
-        temp_it()
+                print(f'Cannot move {from_path} reason: {e}')
+    print(f'Moved {counter} amount of junk files')
+    temp_it()
+
 #Only works on windows checks temp folder looking for trash temp files.
 def temp_it():
     counter = 0
