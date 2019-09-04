@@ -73,3 +73,5 @@ but be wary the configuration for the age of the files is in seconds so if you w
 - Minor changes
 ##### 1.0.2
 - Complete code cleanup for optimisation.
+##### 1.0.3
+- Minor code fixes
