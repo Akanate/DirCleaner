@@ -22,6 +22,7 @@ class Cleaner:
         self.listed = [self.documents,self.downloads,self.desktop]
         self.counter = 0
         self.scanned = 0
+        self.update_check()
 
     # Checks for an update
     def update_check(self):
@@ -51,7 +52,7 @@ class Cleaner:
                     exit()
             else:
                 print('Most recent version continuing')
-                Cleaner.admin_check(self)
+                self.admin_check()
     #Checks if athe user is an admin
     def admin_check(self):
         if self.checkadmin == 'True':
@@ -65,22 +66,22 @@ class Cleaner:
                     exit()
                 else:
                     print("You're all clear. Continuing...")
-                    Cleaner.precheck(self)
+                    self.precheck()
         else:
             print("Skipping admin check...")
-            Cleaner.precheck(self)
+            self.precheck()
 
     # Checks if you have a junk folder/creates one if none exists.
     def precheck(self):
         print('Checking for junk folder...')
         if os.path.exists(self.junk):
             print('Junk folder already exists. Continuing...')
-            Cleaner.cleaning(self)
+            self.cleaning()
         else:
             print("Junk folder doesn't exist. Creating the folder...")
-            os.mkdir(junk)
+            os.mkdir(self.junk)
             print('Created junk folder. Continuing...')
-            Cleaner.cleaning(self)
+            self.cleaning()
 
     # Goes through all files and subdirs in Documents, Desktop and downloads looking for files which fit the filter
     def cleaning(self):
@@ -93,7 +94,7 @@ class Cleaner:
                             from_path = os.path.join(directory,filename)
                             to_path = os.path.join(self.junk,filename)
                             self.scanned += 1
-                            if os.stat(from_path).st_size < self.new_minsize and time.time() - os.path.getmtime(from_path) > (self.new_minperiod) and junk not in from_path:
+                            if os.stat(from_path).st_size < self.new_minsize and time.time() - os.path.getmtime(from_path) > (self.new_minperiod) and self.junk not in from_path:
                                 shutil.move(from_path,to_path)
                                 self.counter += 1
                                 print(f'Moved {from_path} to {to_path}')
@@ -103,7 +104,7 @@ class Cleaner:
                         except Exception as e:
                             print(f'Cannot move {from_path} reason: {e}')
                             pass
-        Cleaner.temp_it(self)
+        self.temp_it()
 
     #Only works on windows checks temp folder looking for trash temp files.
     def temp_it(self):
@@ -120,21 +121,21 @@ class Cleaner:
                 except Exception as e:
                     print(f'Could not remove {temporary} due to:{e}')
                     pass
-        print(f'Total files removed {self.counter} and total files scanned {self.scanned}')
-        Cleaner.confirm()
+        print(f'Total files moved not accurate as errors could have been encountered {self.counter} and total files scanned {self.scanned}')
+        self.confirm()
 
     #Choose your options
-    def confirm():
+    def confirm(self):
         choice = input('Enter if you want to: [rollback] the process, [search] for a file in the junk folder or [empty] the junk folder: ')
         if choice == 'search':
-            Cleaner.search()
+            self.search()
         elif choice == 'empty':
-            Cleaner.empty()
+            self.empty()
         elif choice == 'rollback':
-            Cleaner.rollback()
+            self.rollback()
         else:
             print('Enter a valid choice.')
-            Cleaner.confirm()
+            self.confirm()
 
     #Searches for files in junk folder
     def search(self):
@@ -146,13 +147,13 @@ class Cleaner:
                 where = input('Where do you want to move it to?: ')
                 shutil.move(searched_up,where)
                 print(f'Your file {searched_up} has been moved to {where}.')
-                Cleaner.confirm()
+                self.confirm()
             else:
                 print('Invalid option.')
-                Cleaner.search()
+                self.search()
         else:
             print('That file does not exist.')
-            Cleaner.confirm()
+            self.confirm()
 
     #Clears the junk
     def empty(self):
@@ -169,9 +170,9 @@ class Cleaner:
         print('Finished.')
         exit()
     #Reverses changes made by the program.
-    def rollback():
+    def rollback(self):
         try:
-            log_file = open('log.txt','r')
+            log_file = open('log.txt','r+')
             for line in log_file:
                 lined = line.strip()
                 paths = lined.split(' moved to ')
@@ -185,12 +186,8 @@ class Cleaner:
                 print(f'Could not move {new} to {old} due to: {e}')
                 pass
         print('Wiped log')
-        f = open('log.txt','w+')
-        f.write('')
-        f.close()
-        confirm()
+        log_file.truncate()
 
-cleaned = Cleaner()
-cleaned.update_check()
+Cleaner()
 
 
