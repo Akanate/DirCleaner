@@ -1,16 +1,14 @@
 # Get the modules needed.
-import os, shutil, time, glob, ctypes, datetime, configparser, requests
+import os, shutil, time, glob, ctypes, datetime, configparser, requests, argparse, sys
 from os.path import expanduser
 class Cleaner:
     def __init__(self):
         # configparser set up.
         config = configparser.ConfigParser()
         config.read("script.config")
-
         #Config variables.
         self.minperiod = config.get("MAIN", "minperiod")
         self.minsize = config.get("MAIN", "minsize")
-        self.checkadmin = config.get("MAIN", "checkadmin")
         self.new_minsize = int(self.minsize)
         self.new_minperiod = int(self.minperiod)
         #Path Variables
@@ -18,13 +16,39 @@ class Cleaner:
         self.desktop = os.path.expanduser('~/Desktop')
         self.documents = os.path.expanduser('~/Documents')
         self.downloads = os.path.expanduser('~/Downloads')
-        self.temp = os.path.expanduser('~/Appdate/Local/Temp')
+        self.temp = os.path.expanduser('~/AppData/Local/Temp')
         self.listed = [self.documents,self.downloads,self.desktop]
         self.counter = 0
         self.scanned = 0
-        self.search()
+        self.arguments()
+    
+    #Configparser arguments
+    def arguments(self):
+        parser = argparse.ArgumentParser(add_help=False)
+        parser.add_argument('-r',action='store_true',help='Rolls back the cleaning process')
+        parser.add_argument('-s',action='store_true',help='Allows you to search through the junk')
+        parser.add_argument('-e',action='store_true',help='Empties the junk')
+        parser.add_argument('-c',action='store_true',help='Cleans your computer')
+        parser.add_argument('-u',action='store_true',help='Checks for update')
+        parser.add_argument('-t',action='store_true',help='Wipes temp files')
+        parser.add_argument('--help',action="help",help='Help page')
+        args = parser.parse_args()
+        if args.r:
+            self.rollback()
+        elif args.s:
+            self.search()
+        elif args.e:
+            self.empty()
+        elif args.c:
+            self.cleaning()
+        elif args.u:
+            self.update_check()
+        elif args.t:
+            self.temp_it()
+        if len(sys.argv[0]) != 1:
+            print('Do python DirCleaner.py --help to see the options')
 
-    # Checks for an update
+    #Checks for updates by requesting to github repo
     def update_check(self):
         print('Checking for updates...')
         contents = requests.get('https://raw.githubusercontent.com/WHYSOEASY/DirCleaner/master/info.txt')
@@ -51,41 +75,15 @@ class Cleaner:
                     print('Other os detected you need to run update.sh')
                     exit()
             else:
-                print('Most recent version continuing')
-                self.admin_check()
-    #Checks if athe user is an admin
-    def admin_check(self):
-        if self.checkadmin == 'True':
-            print('Checking this program is not running as admin...')
-            try:
-                is_admin = os.getuid() == 0
-            except AttributeError:
-                is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
-                if is_admin == 'True':
-                    print('You need to run this program without admin privileges. This is to prevent data loss.')
-                    exit()
-                else:
-                    print("You're all clear. Continuing...")
-                    self.precheck()
-        else:
-            print("Skipping admin check...")
-            self.precheck()
+                print('Most recent version')
 
-    # Checks if you have a junk folder/creates one if none exists.
-    def precheck(self):
-        print('Checking for junk folder...')
-        if os.path.exists(self.junk):
-            print('Junk folder already exists. Continuing...')
-            self.cleaning()
-        else:
-            print("Junk folder doesn't exist. Creating the folder...")
-            os.mkdir(self.junk)
-            print('Created junk folder. Continuing...')
-            self.cleaning()
 
     # Goes through all files and subdirs in Documents, Desktop and downloads looking for files which fit the filter
     def cleaning(self):
         print('Starting cleaning of documents, downloads and desktop...')
+        time.sleep(5)
+        print('Clean started this could take up to two mins depending on your computer speed and amount of files')
+        time.sleep(1)
         for i in range(0,3):
             for directories in self.listed:
                 for directory, _, filenames in os.walk(self.listed[i]):        
@@ -103,43 +101,30 @@ class Cleaner:
                                 self.counter += 1
                                 print(f'Moved {from_path} to {to_path}')
                             else:
-                                print(f'skipped {from_path}')
+                                #print(f'skipped {from_path}')
                                 pass
                         except Exception as e:
                             print(f'Cannot move {from_path} reason: {e}')
                             pass
-        self.temp_it()
+        print('Scanned: {self.scanned} Moved: {self.counter}')
+        exit()
 
     #Only works on windows checks temp folder looking for trash temp files.
     def temp_it(self):
+        os.chdir(self.temp)
         print('Removing trash temp files...')
-        for directories,_ , filenames in os.walk(self.temp):
-            for i in filenames:
-                try:
-                    temporary = os.path.join(directories,i)
-                    self.scanned += 1
-                    if temporary.endswith('*.tmp'):
-                        os.remove(temporary)
-                        print('Removed {temporary}.')
-                        self.counter += 1
-                except Exception as e:
-                    print(f'Could not remove {temporary} due to:{e}')
-                    pass
-        print(f'Total files moved not accurate as errors could have been encountered {self.counter} and total files scanned {self.scanned}')
-        self.confirm()
-
-    #Choose your options
-    def confirm(self):
-        choice = input('Enter if you want to: [rollback] the process, [search] for a file in the junk folder or [empty] the junk folder: ')
-        if choice == 'search':
-            self.search()
-        elif choice == 'empty':
-            self.empty()
-        elif choice == 'rollback':
-            self.rollback()
-        else:
-            print('Enter a valid choice.')
-            self.confirm()
+        for temp_file in glob.glob('*.tmp'):
+            try:
+                temporary = os.path.join(self.temp,temp_file)
+                self.counter += 1
+                os.remove(temp_file)
+                print(f'Removed {temporary}.')
+                self.counter += 1
+            except Exception as e:
+                print(f'Could not remove {temporary} due to:{e}')
+                pass
+        print(f'Total files removed {self.counter}')
+        exit()
 
     #Searches for files in junk folder
     def search(self):
@@ -151,13 +136,12 @@ class Cleaner:
                 where = input('Where do you want to move it to?: ')
                 shutil.move(searched_up,where)
                 print(f'Your file {searched_up} has been moved to {where}.')
-                self.confirm()
             else:
                 print('Invalid option.')
                 self.search()
         else:
             print('That file does not exist.')
-            self.confirm()
+            self.search()
 
     #Clears the junk
     def empty(self):
@@ -191,6 +175,7 @@ class Cleaner:
                 pass
         print('Wiped log')
         t = open('log.txt','w+').close()
+        exit()
 
 Cleaner()
 
