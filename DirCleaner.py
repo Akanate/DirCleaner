@@ -13,7 +13,7 @@ class Cleaner:
         self.checkadmin = config.get("MAIN", "checkadmin")
         self.new_minsize = int(self.minsize)
         self.new_minperiod = int(self.minperiod)
-        #Path Variables
+        #Path variables.
         self.junk = os.path.expanduser('~/Desktop/junk')
         self.desktop = os.path.expanduser('~/Desktop')
         self.documents = os.path.expanduser('~/Documents')
@@ -24,7 +24,7 @@ class Cleaner:
         self.scanned = 0
         self.search()
 
-    # Checks for an update
+    # Checks for an update.
     def update_check(self):
         print('Checking for updates...')
         contents = requests.get('https://raw.githubusercontent.com/WHYSOEASY/DirCleaner/master/info.txt')
@@ -53,7 +53,7 @@ class Cleaner:
             else:
                 print('Most recent version continuing')
                 self.admin_check()
-    #Checks if athe user is an admin
+    # Checks if the user is an admin.
     def admin_check(self):
         if self.checkadmin == 'True':
             print('Checking this program is not running as admin...')
@@ -110,7 +110,7 @@ class Cleaner:
                             pass
         self.temp_it()
 
-    #Only works on windows checks temp folder looking for trash temp files.
+    # (only works on Windows) Checks temp folder for trash temp files.
     def temp_it(self):
         print('Removing trash temp files...')
         for directories,_ , filenames in os.walk(self.temp):
@@ -125,12 +125,12 @@ class Cleaner:
                 except Exception as e:
                     print(f'Could not remove {temporary} due to:{e}')
                     pass
-        print(f'Total files moved not accurate as errors could have been encountered {self.counter} and total files scanned {self.scanned}')
+        print(f'Total files moved (not accurate as errors could have been encountered): {self.counter} and total files scanned: {self.scanned}')
         self.confirm()
 
-    #Choose your options
+    # Make your choice.
     def confirm(self):
-        choice = input('Enter if you want to: [rollback] the process, [search] for a file in the junk folder or [empty] the junk folder: ')
+        choice = input('Enter if you want to [rollback] the process, [search] for a file in the junk folder or [empty] the junk folder: ')
         if choice == 'search':
             self.search()
         elif choice == 'empty':
@@ -141,7 +141,7 @@ class Cleaner:
             print('Enter a valid choice.')
             self.confirm()
 
-    #Searches for files in junk folder
+    # Searches for files in the junk folder.
     def search(self):
         searched = input('Enter the file you want to search for: ')
         searched_up = os.path.join(self.junk,searched)
@@ -159,7 +159,7 @@ class Cleaner:
             print('That file does not exist.')
             self.confirm()
 
-    #Clears the junk
+    # Clears the junk.
     def empty(self):
         print('Emptying the junk folder...')
         for directory, _, filename in os.walk(self.junk):
@@ -189,7 +189,7 @@ class Cleaner:
         except Exception as e:
                 print(f'Could not move {new} to {old} due to: {e}')
                 pass
-        print('Wiped log')
+        print('Wiped log.')
         t = open('log.txt','w+').close()
 
 Cleaner()
