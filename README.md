@@ -75,3 +75,5 @@ but be wary the configuration for the age of the files is in seconds so if you w
 - Complete code cleanup for optimisation.
 ##### 1.0.3
 - Minor code fixes
+##### 1.0.4
+- Fixing rollback feature
