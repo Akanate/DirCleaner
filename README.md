@@ -24,19 +24,22 @@ First of all, use git clone or download the ZIP from <https://github.com/WHYSOEA
 
 <img src="/assets/git clone 2.png" alt="Git clone two">
 Then cd  into the DirCleaner directory
-<img src="/assets/cd.jpg" alt="cd">
-Then proceed to launch DirCleaner.py.
-<img src="/assets/start_program.png" alt="Starting the progran">
-Then after it has cleaned up your files, you will be prompted with this.
-<img src="/assets/executing_program.png" alt="Executing program">
-Search will allow you to search for a file in the junk and move or delete it.
-<img src="/assets/search.png" alt="searching">
-Empty will delete all the files in the junk for you.
-<img src="/assets/155ED3CE-19D4-4E96-99D1-3759E444483C.png" alt="empty">
-And rollback will look inside the log file and reverse the changes, putting all the files back to where they were.
-<img src="/assets/rollback.png" alt="rollback">
-
-
+<img src="/assets/help_simple.png" alt="cd">
+Then proceed to do python DirCleaner.py --help this will bring up a help menu.
+<img src="/assets/help.png" alt="Starting the progran">
+Then you will be given some options to use as command line arguments
+<img src="/assets/clean.png" alt="Executing program">
+The -c option will clean your computer.
+<img src="/assets/rollback.png" alt="searching">
+The -r option or the rollback feature will allow you to undo all the changes made.
+<img src="/assets/empty1.png" alt="empty">
+The -e option or empty will empty the junk for you deleting everything in it.
+<img src="/assets/temp.png" alt="temp">
+The -t option or temp deleter removes all temp files of non importance.
+<img src="/assets/search.png" alt='search'>
+The -s option or the search option allows you to search for a singular item in the junk and move or delete it.
+<img src="/assets/update.png" alt="update">
+The -u option or update option checks for updates.
 ### Reporting bugs
 Make a new issue in the repo.
 ### What not to touch
@@ -77,3 +80,5 @@ but be wary the configuration for the age of the files is in seconds so if you w
 - Minor code fixes
 ##### 1.0.4
 - Fixed rollback feature
+##### 2.00
+- Arguments added
