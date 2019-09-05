@@ -40,6 +40,7 @@ The -t option or temp deleter removes all temp files of non importance.
 The -s option or the search option allows you to search for a singular item in the junk and move or delete it.
 <img src="/assets/update.png" alt="update">
 The -u option or update option checks for updates.
+
 ### Reporting bugs
 Make a new issue in the repo.
 ### What not to touch
