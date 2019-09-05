@@ -81,5 +81,5 @@ but be wary the configuration for the age of the files is in seconds so if you w
 - Minor code fixes
 ##### 1.0.4
 - Fixed rollback feature
-##### 2.00
+##### 2.0.0
 - Arguments added
