@@ -22,7 +22,7 @@ class Cleaner:
         self.listed = [self.documents,self.downloads,self.desktop]
         self.counter = 0
         self.scanned = 0
-        self.update_check()
+        self.search()
 
     # Checks for an update
     def update_check(self):
@@ -93,13 +93,17 @@ class Cleaner:
                         try:
                             from_path = os.path.join(directory,filename)
                             to_path = os.path.join(self.junk,filename)
+                            f = open('log.txt','a')
+                            f.write('\n')
+                            f.write(from_path+' moved '+to_path)
+                            f.close()
                             self.scanned += 1
                             if os.stat(from_path).st_size < self.new_minsize and time.time() - os.path.getmtime(from_path) > (self.new_minperiod) and self.junk not in from_path:
                                 shutil.move(from_path,to_path)
                                 self.counter += 1
                                 print(f'Moved {from_path} to {to_path}')
                             else:
-                                #print(f'skipped {from_path}')
+                                print(f'skipped {from_path}')
                                 pass
                         except Exception as e:
                             print(f'Cannot move {from_path} reason: {e}')
@@ -172,7 +176,7 @@ class Cleaner:
     #Reverses changes made by the program.
     def rollback(self):
         try:
-            log_file = open('log.txt','r+')
+            log_file = open('log.txt','r')
             for line in log_file:
                 lined = line.strip()
                 paths = lined.split(' moved to ')
@@ -186,7 +190,7 @@ class Cleaner:
                 print(f'Could not move {new} to {old} due to: {e}')
                 pass
         print('Wiped log')
-        log_file.truncate()
+        t = open('log.txt','w+').close()
 
 Cleaner()
 
