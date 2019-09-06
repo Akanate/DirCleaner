@@ -29,7 +29,7 @@ class Cleaner:
         parser.add_argument('-s',action='store_true',help='Allows you to search through the junk.')
         parser.add_argument('-e',action='store_true',help='Empties the junk.')
         parser.add_argument('-c',action='store_true',help='Cleans your computer.')
-        parser.add_argument('-u',action='store_true',help='Checks for update.')
+        parser.add_argument('-u',action='store_true',help='Checks for updates.')
         parser.add_argument('-t',action='store_true',help='Wipes temp files.')
         parser.add_argument('--help',action="help",help='Help page.')
         args = parser.parse_args()
