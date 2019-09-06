@@ -1,5 +1,5 @@
 # Get the modules needed.
-import os, shutil, time, glob, ctypes, datetime, configparser, requests, argparse, sys
+import os, shutil, time, glob, datetime, configparser, requests, argparse, sys
 from os.path import expanduser
 class Cleaner:
     def __init__(self):
