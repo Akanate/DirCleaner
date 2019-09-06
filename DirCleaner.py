@@ -22,7 +22,7 @@ class Cleaner:
         self.scanned = 0
         self.arguments()
     
-    # Configparser arguments.
+    # Argparser arguments.
     def arguments(self):
         parser = argparse.ArgumentParser(add_help=False)
         parser.add_argument('-r',action='store_true',help='Rolls back the cleaning process.')
