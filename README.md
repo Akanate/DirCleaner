@@ -7,15 +7,9 @@ This program moves files around; use it at your own risk. I have implemented fea
 ## Features
 This program has a filter which stops any files which are younger than 3 months from being moved.
 
-
-This program also prevents you from running it as an admin.
-
-
-This program also has a rollback system, so if you think "oh no, it has moved a lot of files I dont want it to move", let it finish, then you will be prompted with a text bar saying the following: "Do you want to [search], [empty] or [rollback]?" Proceed to type in rollback. This will move all the files which were moved back to their original place.
-
+This program also has a rollback system, so if you think "oh no, it has moved a lot of files I don't want it to move", let it finish, then you will be prompted with a text bar saying the following: "Do you want to [search], [empty] or [rollback]?" Proceed to type in rollback. This will move all the files which were moved back to their original place.
 
 This program also only moves files which are under 100 bytes in size.
-
 
 You will notice I said move. That's because the files are not instantly deleted, and instead moved to a junk folder.
 ### How to use
@@ -24,23 +18,27 @@ First of all, use git clone or download the ZIP from <https://github.com/WHYSOEA
 
 <img src="/assets/git clone 2.png" alt="Git clone two">
 Then cd into the DirCleaner directory
-<img src="/assets/cd.jpg" alt="cd">
-Then proceed to launch DirCleaner.py.
-<img src="/assets/start_program.png" alt="Starting the progran">
-Then after it has cleaned up your files, you will be prompted with this.
-<img src="/assets/executing_program.png" alt="Executing program">
-Search will allow you to search for a file in the junk and move or delete it.
-<img src="/assets/search.png" alt="searching">
-Empty will delete all the files in the junk for you.
-<img src="/assets/155ED3CE-19D4-4E96-99D1-3759E444483C.png" alt="empty">
-And rollback will look inside the log file and reverse the changes, putting all the files back to where they were.
+<img src="/assets/help_simple.png" alt="cd">
+Then proceed to do python DirCleaner.py --help; this will bring up a help menu.
+<img src="/assets/help.png" alt="help menu">
+Then you will be given some options to use as command line arguments.
+<img src="/assets/clean.png" alt="clean">
+The -c option will clean your computer.
 <img src="/assets/rollback.png" alt="rollback">
-
+The -r option (the rollback feature) will allow you to undo all changes made.
+<img src="/assets/empty1.png" alt="empty">
+The -e option will empty the junk folder for you, deleting everything in it.
+<img src="/assets/temp.png" alt="temp">
+The -t option removes all temp files of non importance.
+<img src="/assets/search.png" alt='search'>
+The -s option (the search option) allows you to search for a single item in the junk folder and move or delete it.
+<img src="/assets/update.png" alt="update">
+The -u option checks for updates.
 
 ### Reporting bugs
 Make a new issue in the repo.
 ### What not to touch
-DO NOT by any circumstance touch the log files; these are used in the rollback feature.
+DO NOT, under any circumstances, touch the log files; these are used in the rollback feature.
 ### Updating
 Just run update.py to get the latest version on Windows. Run update.sh if you are on Linux/any other Unix-based OS.
 ### How does it work?
@@ -77,3 +75,7 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Minor code fixes.
 ##### 1.0.4
 - Fixed rollback feature.
+##### 2.0.0
+- Arguments added.
+- Admin check removed.
+- Grammar fixes.
