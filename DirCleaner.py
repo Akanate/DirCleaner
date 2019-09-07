@@ -188,8 +188,8 @@ class Cleaner:
         print('Wiped log.')
         t = open('log.txt','w+').close()
         exit()
-
-Cleaner()
+if __name__ == '__main__':
+    Cleaner()
 
 
 
