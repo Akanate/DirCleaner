@@ -31,6 +31,7 @@ class Cleaner:
         parser.add_argument('-c',action='store_true',help='Cleans your computer.')
         parser.add_argument('-u',action='store_true',help='Checks for updates.')
         parser.add_argument('-t',action='store_true',help='Wipes temp files.')
+        parser.add_argument('-j',action='store_true',help='This will make the junk file needed for the -c option')
         parser.add_argument('--help',action="help",help='Help page.')
         args = parser.parse_args()
         if args.r:
@@ -45,10 +46,19 @@ class Cleaner:
             self.update_check()
         elif args.t:
             self.temp_it()
+        elif args.j:
+            self.junky()
         if len(sys.argv[0]) != 1:
             print('Do python DirCleaner.py --help to see the options.')
 
-
+    def junky(self):
+        if os.path.exists(self.junk):
+            print('You already have a junk folder')
+            exit()
+        else:
+            print('Making junk folder for you')
+            os.mkdir(self.junk)
+            exit()
     # Checks for updates by checking the Github repo.
     def update_check(self):
         print('Checking for updates...')
@@ -180,5 +190,6 @@ class Cleaner:
         exit()
 
 Cleaner()
+
 
 
