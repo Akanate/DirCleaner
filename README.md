@@ -79,3 +79,5 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Arguments added.
 - Admin check removed.
 - Grammar fixes.
+##### 2.0.1
+- Code additions including -j for making junk folder needed for -c.
