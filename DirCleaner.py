@@ -117,7 +117,7 @@ class Cleaner:
                         except Exception as e:
                             print(f'Cannot move {from_path} reason: {e}')
                             pass
-        print('Scanned: {self.scanned} Moved: {self.counter}')
+        print(f'Scanned: {self.scanned} Moved: {self.counter}')
         exit()
 
     # (only works on Windows) Checks temp folder for trash temp files.
