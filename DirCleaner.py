@@ -11,6 +11,8 @@ class Cleaner:
         self.minsize = config.get("MAIN", "minsize")
         self.new_minsize = int(self.minsize)
         self.new_minperiod = int(self.minperiod)
+        self.l = config.get("MAIN","wipelog")
+        self.log = str(self.l)
         # Path variables.
         self.junk = os.path.expanduser('~/Desktop/junk')
         self.desktop = os.path.expanduser('~/Desktop')
@@ -20,8 +22,14 @@ class Cleaner:
         self.listed = [self.documents,self.downloads,self.desktop]
         self.counter = 0
         self.scanned = 0
-        self.arguments()
+        self.create()
     
+    def create(self):
+        if os.path.exists(self.junk):
+            self.arguments()
+        else:
+            os.mkdir(self.junk)
+            self.arguments()
     # Argparser arguments.
     def arguments(self):
         parser = argparse.ArgumentParser(add_help=False)
@@ -96,27 +104,26 @@ class Cleaner:
         print("Clean started. This could take up to two mins, depending on your computer's speed and the amount of files.")
         time.sleep(1)
         for i in range(0,3):
-            for directories in self.listed:
-                for directory, _, filenames in os.walk(self.listed[i]):        
-                    for filename in filenames:
-                        try:
-                            from_path = os.path.join(directory,filename)
-                            to_path = os.path.join(self.junk,filename)
+            for directory, _, filenames in os.walk(self.listed[i]):        
+                for filename in filenames:
+                    try:
+                        from_path = os.path.join(directory,filename)
+                        new_path = os.path.join(self.junk,filename)
+                        self.scanned += 1
+                        if os.stat(from_path).st_size < self.new_minsize and time.time() - os.path.getmtime(from_path) > (self.new_minperiod) and self.junk not in from_path:
+                            shutil.move(from_path,self.junk)
+                            self.counter += 1
                             f = open('log.txt','a')
                             f.write('\n')
-                            f.write(from_path+' moved '+to_path)
+                            f.write(from_path+' moved to '+new_path)
                             f.close()
-                            self.scanned += 1
-                            if os.stat(from_path).st_size < self.new_minsize and time.time() - os.path.getmtime(from_path) > (self.new_minperiod) and self.junk not in from_path:
-                                shutil.move(from_path,to_path)
-                                self.counter += 1
-                                print(f'Moved {from_path} to {to_path}')
-                            else:
-                                #print(f'skipped {from_path}')
-                                pass
-                        except Exception as e:
-                            print(f'Cannot move {from_path} reason: {e}')
+                            print(f'Moved {from_path} to {self.junk}')
+                        else:
+                            #print(f'skipped {from_path}')
                             pass
+                    except Exception as e:
+                        print(f'Cannot move {from_path} reason: {e}')
+                        pass
         print(f'Scanned: {self.scanned} Moved: {self.counter}')
         exit()
 
@@ -171,23 +178,28 @@ class Cleaner:
         exit()
     #Reverses changes made by the program.
     def rollback(self):
-        try:
-            log_file = open('log.txt','r')
-            for line in log_file:
+        log_file = open('log.txt','r')
+        for line in log_file:
+            try:
                 lined = line.strip()
                 paths = lined.split(' moved to ')
                 if len(paths) != 2:
                     continue
                 old = paths[0]
                 new = paths[1]
-                print(f'Reversing changes; moving {new} to {old}.')
-                shutil.move(new,old)
-        except Exception as e:
-                print(f'Could not move {new} to {old} due to: {e}')
+                newed = old.rsplit("\\", 1)[0]
+                print(f'Reversing changes; moving {new} to {newed}.')
+                shutil.move(new,newed)
+            except Exception as e:
+                print(f'Could not move {new} to {newed} due to: {e}')
                 pass
-        print('Wiped log.')
-        t = open('log.txt','w+').close()
-        exit()
+        if self.log == 'True':
+            t = open('log.txt','w+').close()
+            print('Wiped log')
+            exit()
+        else:
+            print('Not wiping log set to True to wipe log')
+            exit()
 if __name__ == '__main__':
     Cleaner()
 
