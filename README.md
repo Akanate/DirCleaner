@@ -81,3 +81,7 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Grammar fixes.
 ##### 2.0.1
 - Code additions including -j for making junk folder needed for -c.
+##### 2.0.2
+- Rollback fixed
+- Wipe log can be turned off and on
+- Code cleanup
