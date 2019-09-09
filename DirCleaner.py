@@ -1,6 +1,20 @@
 # Get the modules needed.
-import os, shutil, time, glob, datetime, configparser, requests, argparse, sys
+import os 
+import shutil
+import time 
+import glob 
+import datetime
+import sys
+import configparser 
+import requests 
+import argparse 
+import colorama
+from colorama import Fore, Back, Style
+from colorama import init 
+import art
+from art import tprint
 from os.path import expanduser
+init()
 class Cleaner:
     def __init__(self):
         # configparser set up.
@@ -12,7 +26,6 @@ class Cleaner:
         self.new_minsize = int(self.minsize)
         self.new_minperiod = int(self.minperiod)
         self.l = config.get("MAIN","wipelog")
-        self.log = str(self.l)
         # Path variables.
         self.junk = os.path.expanduser('~/Desktop/junk')
         self.desktop = os.path.expanduser('~/Desktop')
@@ -22,8 +35,13 @@ class Cleaner:
         self.listed = [self.documents,self.downloads,self.desktop]
         self.counter = 0
         self.scanned = 0
+        self.banner()
+
+    def banner(self):
+        tprint('DirCleaner')
+        print(Fore.LIGHTMAGENTA_EX + 'Made by WHYSOEASY')
         self.create()
-    
+         
     def create(self):
         if os.path.exists(self.junk):
             self.arguments()
@@ -61,15 +79,15 @@ class Cleaner:
 
     def junky(self):
         if os.path.exists(self.junk):
-            print('You already have a junk folder')
+            print(Fore.GREEN + 'You already have a junk folder')
             exit()
         else:
-            print('Making junk folder for you')
+            print(Fore.YELLOW + 'Making junk folder for you')
             os.mkdir(self.junk)
             exit()
     # Checks for updates by checking the Github repo.
     def update_check(self):
-        print('Checking for updates...')
+        print(Fore.YELLOW + 'Checking for updates...')
         contents = requests.get('https://raw.githubusercontent.com/WHYSOEASY/DirCleaner/master/info.txt')
         contented = contents.content
         new_contents = contented.decode()
@@ -84,17 +102,24 @@ class Cleaner:
         with open('info.txt','r') as f:
             contents = f.read().strip()
             if contents != newer_contents:
-                print('New update available applying update')
+                print(Fore.YELLOW + 'New update available applying update')
                 print(f'{newer_contents}')
+                check = expanduser('~/Appdata/Local/Temp')
+                if os.path.exists(check):
+                    print(Fore.YELLOW + 'Windows detected you need to run update.py')
+                    exit()
+                else:
+                    print(Fore.YELLOW + 'Other os detected you need to run update.sh')
+                    exit()
             else:
-                print('Most recent version installed. Cotinuing...')
+                print(Fore.GREEN + 'Most recent version installed. Cotinuing...')
 
 
     # Goes through all files and subdirs in Documents, Desktop and Downloads looking for files which fit the filter.
     def cleaning(self):
-        print('Starting clean of documents, downloads and desktop...')
+        print(Fore.YELLOW + 'Starting clean of documents, downloads and desktop...')
         time.sleep(5)
-        print("Clean started. This could take up to two mins, depending on your computer's speed and the amount of files.")
+        print(Fore.GREEN + "Clean started. This could take up to two mins, depending on your computer's speed and the amount of files.")
         time.sleep(1)
         for i in range(0,3):
             for directory, _, filenames in os.walk(self.listed[i]):        
@@ -110,64 +135,64 @@ class Cleaner:
                             f.write('\n')
                             f.write(from_path+' moved to '+new_path)
                             f.close()
-                            print(f'Moved {from_path} to {self.junk}')
+                            print(Fore.GREEN + (f'Moved {from_path} to {self.junk}'))
                         else:
                             #print(f'skipped {from_path}')
                             pass
                     except Exception as e:
-                        print(f'Cannot move {from_path} reason: {e}')
+                        print(Fore.RED + (f'Cannot move {from_path} reason: {e}'))
                         pass
-        print(f'Scanned: {self.scanned} Moved: {self.counter}')
+        print(Fore.YELLOW +(f'Scanned: {self.scanned} Moved: {self.counter}'))
         exit()
 
-    #Checks temp folder for trash temp files.
+    # (only works on Windows) Checks temp folder for trash temp files.
     def temp_it(self):
         os.chdir(self.temp)
-        print('Removing trash temp files...')
+        print(Fore.YELLOW + 'Removing trash temp files...')
         for temp_file in glob.glob('*.tmp'):
             try:
                 temporary = os.path.join(self.temp,temp_file)
                 self.counter += 1
                 os.remove(temp_file)
-                print(f'Removed {temporary}.')
+                print(Fore.GREEN + (f'Removed {temporary}.'))
                 self.counter += 1
             except Exception as e:
-                print(f'Could not remove {temporary} due to: {e}')
+                print(Fore.RED + (f'Could not remove {temporary} due to: {e}'))
                 pass
-        print(f'Total files removed: {self.counter}')
+        print(Fore.YELLOW + (f'Total files removed: {self.counter}'))
         exit()
 
 
     # Searches for files in the junk folder.
     def search(self):
-        searched = input('Enter the file you want to search for: ')
+        searched = input(Fore.YELLOW +'Enter the file you want to search for: ')
         searched_up = os.path.join(self.junk,searched)
         if os.path.exists(searched_up):
-            choice = input('What do you want to do with this file? [move] or [delete]: ')
+            choice = input(Fore.YELLOW +'What do you want to do with this file? [move] or [delete]: ')
             if choice == 'move':
-                where = input('Where do you want to move it to?: ')
+                where = input(Fore.YELLOW + 'Where do you want to move it to?: ')
                 shutil.move(searched_up,where)
-                print(f'Your file {searched_up} has been moved to {where}.')
+                print(Fore.GREEN + (f'Your file {searched_up} has been moved to {where}.'))
             else:
-                print('Invalid option.')
+                print(Fore.RED + 'Invalid option.')
                 self.search()
         else:
-            print('That file does not exist.')
+            print(Fore.RED + 'That file does not exist.')
             self.search()
 
     # Clears the junk.
     def empty(self):
-        print('Emptying the junk folder...')
+        print(Fore.GREEN +'Emptying the junk folder...')
         for directory, _, filename in os.walk(self.junk):
             for i in filename:
                 try:
                     joined = os.path.join(directory,i)
                     os.remove(joined)
-                    print(f'Removed {joined}.')
+                    print(Fore.GREEN + (f'Removed {joined}.'))
                 except Exception as e:
-                    print(f'Could not delete {joined} due to: {e}')
+                    print(Fore.RED + (f'Could not delete {joined} due to: {e}'))
                     pass
-        print('Finished.')
+        print(Fore.GREEN + 'Finished.')
         exit()
     #Reverses changes made by the program.
     def rollback(self):
@@ -181,20 +206,24 @@ class Cleaner:
                 old = paths[0]
                 new = paths[1]
                 newed = old.rsplit("\\", 1)[0]
-                print(f'Reversing changes; moving {new} to {newed}.')
+                print(Fore.GREEN + (f'Reversing changes; moving {new} to {newed}.'))
                 shutil.move(new,newed)
             except Exception as e:
-                print(f'Could not move {new} to {newed} due to: {e}')
+                print(Fore.GREEN + (f'Could not move {new} to {newed} due to: {e}'))
                 pass
-        if self.log == 'True':
-            t = open('log.txt','w+').close()
-            print('Wiped log')
+        if self.l == 'True':
+            g = open('log.txt','w+').close()
+            print(Fore.YELLOW + 'Wiped log')
             exit()
         else:
-            print('Not wiping log set to True to wipe log')
+            print(Fore.RED + 'Not wiping log set to True to wipe log')
             exit()
 if __name__ == '__main__':
     Cleaner()
+
+
+
+
 
 
 
