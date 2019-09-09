@@ -3,7 +3,7 @@
 This program moves files around; use it at your own risk. I have implemented features which should stop data loss, but if it does, I am not responsible. This program is still in beta.
 ## Requirements
 - Python3
-- Windows or Linux
+- Windows only
 ## Features
 This program has a filter which stops any files which are younger than 3 months from being moved.
 
@@ -85,3 +85,5 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Rollback fixed
 - Wipe log can be turned off and on
 - Code cleanup
+##### 3.0.0 
+- Linux Compatibility removed
