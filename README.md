@@ -14,7 +14,7 @@ Now after you have done that change dircetory into DirCleaner.
 Next do python DirCleaner.py --help
 
 
-<img src="/assets/--help_name.png" alt="Help1">
+<img src="/assets/--help_name.jpg" alt="Help1">
 
 
 Then after hitting enter you will be greeted by this screen.
