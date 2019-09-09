@@ -4,37 +4,40 @@ This program moves files around; use it at your own risk. I have implemented fea
 ## Requirements
 - Python3
 - Windows only
-## Features
-This program has a filter which stops any files which are younger than 3 months from being moved.
-
-This program also has a rollback system, so if you think "oh no, it has moved a lot of files I don't want it to move", let it finish, then you will be prompted with a text bar saying the following: "Do you want to [search], [empty] or [rollback]?" Proceed to type in rollback. This will move all the files which were moved back to their original place.
-
-This program also only moves files which are under 100 bytes in size.
-
-You will notice I said move. That's because the files are not instantly deleted, and instead moved to a junk folder.
 ### How to use
 First of all, use git clone or download the ZIP from <https://github.com/WHYSOEASY/DirCleaner.git>.
 <img src="/assets/git_clone.png" alt="Git clone image">
 
 <img src="/assets/git clone 2.png" alt="Git clone two">
-Then cd into the DirCleaner directory
-<img src="/assets/help_simple.png" alt="cd">
-Then proceed to do python DirCleaner.py --help; this will bring up a help menu.
-<img src="/assets/help.png" alt="help menu">
-Then you will be given some options to use as command line arguments.
-<img src="/assets/clean.png" alt="clean">
-The -c option will clean your computer.
-<img src="/assets/rollback.png" alt="rollback">
-The -r option (the rollback feature) will allow you to undo all changes made.
-<img src="/assets/empty1.png" alt="empty">
-The -e option will empty the junk folder for you, deleting everything in it.
-<img src="/assets/temp.png" alt="temp">
-The -t option removes all temp files of non importance.
-<img src="/assets/search.png" alt='search'>
-The -s option (the search option) allows you to search for a single item in the junk folder and move or delete it.
-<img src="/assets/update.png" alt="update">
-The -u option checks for updates.
-
+- Now after you have done that change dircetory into DirCleaner.
+- Next do python DirCleaner.py --help
+<img src="/assets/help_normal.png" alt="Help1">
+- Then after hitting enter you will be greeted by this screen.
+<img src="/assets/help_properties.png" alt="help2">
+- Now these are all of the options which you can use with the cleaner.
+- The way to clean your computer is the option -c
+<img src="/assets/clean_normal.png" alt="clean">
+- Then hit enter and it will proceed to clean your computer.
+<img src="/assets/clean_info.png" alt="cleaning">
+- The next feature is the -t feature this gets rid of all of your current temporary files.
+<img src="/assets/temps.png" alt="temp0">
+- Then click enter and it will start to delete the temporary files.
+<img src="/assets/clean_temp.png" alt="temp1">
+- Now one of the most brilliant features the rollback feature.
+- If you feel that the cleaner has moved file you didnt want it to move simply cancel the clean control c.
+- Then do python DirCleaner.py -r and it will rollback the process.
+<img src="/assets/new_rollback.png" alt="roll">
+- Then click enter and it will proceed to move all the files back to their original places.
+<img src="/assets/roll_info.png" alt="roll1">
+- Now the -u feature this will check for updates and if there is one it will tell you.
+<img src="/assets/normal_update.png" alt="update">
+- Then click enter.
+<img src="/assets/update_properties.png" alt="update1">
+- Next feature is the search feature you can search in the junk for a file which you may want to delete or move seprately.
+<img src="/assets/searched_up.png" alt="searched">
+- Then type in what you want to search and click enter.
+<img src="/assets/searched_info.png" alt="searched1">
+- Thats it on how to use the features :)
 ### Reporting bugs
 Make a new issue in the repo.
 ### What not to touch
