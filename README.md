@@ -142,3 +142,7 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Code cleanup
 ##### 3.0.0 
 - Linux Compatibility removed
+##### 3.0.1 
+- Colours added
+- Banner added
+- README.md updated
