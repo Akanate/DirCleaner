@@ -9,8 +9,8 @@ First of all, use git clone or download the ZIP from <https://github.com/WHYSOEA
 <img src="/assets/git_clone.png" alt="Git clone image">
 
 <img src="/assets/git clone 2.png" alt="Git clone two">
--Now after you have done that change dircetory into DirCleaner.
--Next do python DirCleaner.py --help
+- Now after you have done that change dircetory into DirCleaner.
+- Next do python DirCleaner.py --help
 <img src="/assets/help_normal.png" alt="Help1">
 - Then after hitting enter you will be greeted by this screen.
 <img src="/assets/help_properties.png" alt="help2">
