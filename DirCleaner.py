@@ -104,15 +104,8 @@ class Cleaner:
             if contents != newer_contents:
                 print(Fore.YELLOW + 'New update available applying update')
                 print(f'{newer_contents}')
-                check = expanduser('~/Appdata/Local/Temp')
-                if os.path.exists(check):
-                    print(Fore.YELLOW + 'Windows detected you need to run update.py')
-                    exit()
-                else:
-                    print(Fore.YELLOW + 'Other os detected you need to run update.sh')
-                    exit()
             else:
-                print(Fore.GREEN + 'Most recent version installed. Cotinuing...')
+                print(Fore.GREEN + 'Most recent version installed. Continuing...')
 
 
     # Goes through all files and subdirs in Documents, Desktop and Downloads looking for files which fit the filter.
@@ -165,10 +158,12 @@ class Cleaner:
 
     # Searches for files in the junk folder.
     def search(self):
-        searched = input(Fore.YELLOW +'Enter the file you want to search for: ')
+        print(Fore.YELLOW + 'Enter the file you want to search for: ',end='')
+        searched = input()
         searched_up = os.path.join(self.junk,searched)
         if os.path.exists(searched_up):
-            choice = input(Fore.YELLOW +'What do you want to do with this file? [move] or [delete]: ')
+            print(Fore.YELLOW +'What do you want to do with this file? [move] or [delete]: ',end='')
+            choice = input()
             if choice == 'move':
                 where = input(Fore.YELLOW + 'Where do you want to move it to?: ')
                 shutil.move(searched_up,where)
@@ -197,6 +192,7 @@ class Cleaner:
     #Reverses changes made by the program.
     def rollback(self):
         log_file = open('log.txt','r')
+        print(Fore.GREEN + 'Starting rollback process')
         for line in log_file:
             try:
                 lined = line.strip()
@@ -211,15 +207,10 @@ class Cleaner:
             except Exception as e:
                 print(Fore.GREEN + (f'Could not move {new} to {newed} due to: {e}'))
                 pass
-        if self.l == 'True':
-            g = open('log.txt','w+').close()
-            print(Fore.YELLOW + 'Wiped log')
-            exit()
-        else:
-            print(Fore.RED + 'Not wiping log set to True to wipe log')
-            exit()
+        g = open('log.txt','w+').close()
 if __name__ == '__main__':
     Cleaner()
+
 
 
 
