@@ -14,13 +14,13 @@ Now after you have done that change dircetory into DirCleaner.
 Next do python DirCleaner.py --help
 
 
-<img src="/assets/help_normal.png" alt="Help1">
+<img src="/assets/--help_name.png" alt="Help1">
 
 
 Then after hitting enter you will be greeted by this screen.
 
 
-<img src="/assets/help_properties.png" alt="help2">
+<img src="/assets/--help.jpg" alt="help2">
 
 
 Now these are all of the options which you can use with the cleaner.
@@ -28,25 +28,25 @@ Now these are all of the options which you can use with the cleaner.
 The way to clean your computer is the option -c
 
 
-<img src="/assets/clean_normal.png" alt="clean">
+<img src="/assets/clean_name.jpg" alt="clean">
 
 
 Then hit enter and it will proceed to clean your computer.
 
 
-<img src="/assets/cleaned.png" alt="cleaning">
+<img src="/assets/clean_info.jpg" alt="cleaning">
 
 
 The next feature is the -t feature this gets rid of all of your current temporary files.
 
 
-<img src="/assets/temps.png" alt="temp0">
+<img src="/assets/temp_name.jpg" alt="temp0">
 
 
 Then click enter and it will start to delete the temporary files.
 
 
-<img src="/assets/clean_temp.png" alt="temp1">
+<img src="/assets/temp_info.jpg" alt="temp1">
 
 
 Now one of the most brilliant features the rollback feature.
@@ -56,37 +56,37 @@ If you feel that the cleaner has moved files you didnt want moving simply cancel
 Then do python DirCleaner.py -r and it will rollback the process.
 
 
-<img src="/assets/new_rollback.png" alt="roll">
+<img src="/assets/rollback_new.jpg" alt="roll">
 
 
 Then click enter and it will proceed to move all the files back to their original places.
 
 
-<img src="/assets/roll_info.png" alt="roll1">
+<img src="/assets/rollback_info.png" alt="roll1">
 
 
 Now the -u feature this will check for updates and if there is one it will tell you.
 
 
-<img src="/assets/normal_update.png" alt="update">
+<img src="/assets/update_name.jpg" alt="update">
 
 
 Then click enter.
 
 
-<img src="/assets/update_properties.png" alt="update1">
+<img src="/assets/update_info.jpg" alt="update1">
 
 
 Next feature is the search feature you can search in the junk for a file which you may want to delete or move seprately.
 
 
-<img src="/assets/searched_up.png" alt="searched">
+<img src="/assets/search_name.jpg" alt="searched">
 
 
 Then type in what you want to search and click enter.
 
 
-<img src="/assets/searched_info.png" alt="searched1">
+<img src="/assets/search_info.jpg" alt="searched1">
 
 
 Thats it on how to use the features :)
