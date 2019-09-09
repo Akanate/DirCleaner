@@ -12,9 +12,17 @@ First of all, use git clone or download the ZIP from <https://github.com/WHYSOEA
 Now after you have done that change dircetory into DirCleaner.
 
 Next do python DirCleaner.py --help
+
+
 <img src="/assets/help_normal.png" alt="Help1">
+
+
 Then after hitting enter you will be greeted by this screen.
+
+
 <img src="/assets/help_properties.png" alt="help2">
+
+
 Now these are all of the options which you can use with the cleaner.
 
 The way to clean your computer is the option -c
