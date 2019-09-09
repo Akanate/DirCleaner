@@ -62,7 +62,7 @@ Then do python DirCleaner.py -r and it will rollback the process.
 Then click enter and it will proceed to move all the files back to their original places.
 
 
-<img src="/assets/rollback_info.png" alt="roll1">
+<img src="/assets/rollback_info.jpg" alt="roll1">
 
 
 Now the -u feature this will check for updates and if there is one it will tell you.
