@@ -86,13 +86,6 @@ class Cleaner:
             if contents != newer_contents:
                 print('New update available applying update')
                 print(f'{newer_contents}')
-                check = expanduser('~/Appdata/Local/Temp')
-                if os.path.exists(check):
-                    print('Windows detected you need to run update.py')
-                    exit()
-                else:
-                    print('Other os detected you need to run update.sh')
-                    exit()
             else:
                 print('Most recent version installed. Cotinuing...')
 
@@ -127,7 +120,7 @@ class Cleaner:
         print(f'Scanned: {self.scanned} Moved: {self.counter}')
         exit()
 
-    # (only works on Windows) Checks temp folder for trash temp files.
+    #Checks temp folder for trash temp files.
     def temp_it(self):
         os.chdir(self.temp)
         print('Removing trash temp files...')
