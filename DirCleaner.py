@@ -145,7 +145,6 @@ class Cleaner:
         for temp_file in glob.glob('*.tmp'):
             try:
                 temporary = os.path.join(self.temp,temp_file)
-                self.counter += 1
                 os.remove(temp_file)
                 print(Fore.GREEN + (f'Removed {temporary}.'))
                 self.counter += 1
