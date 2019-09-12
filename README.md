@@ -146,3 +146,5 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Colours added
 - Banner added
 - README.md updated
+##### 3.0.2 
+- No longer moves files straight allows the user to choose which files they dont want to move before continuing.
