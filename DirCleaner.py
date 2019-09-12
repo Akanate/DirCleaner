@@ -35,6 +35,7 @@ class Cleaner:
         self.listed = [self.documents,self.downloads,self.desktop]
         self.counter = 0
         self.scanned = 0
+        self.paths = []
         self.banner()
 
     def banner(self):
@@ -110,6 +111,7 @@ class Cleaner:
 
     # Goes through all files and subdirs in Documents, Desktop and Downloads looking for files which fit the filter.
     def cleaning(self):
+        paths = []
         print(Fore.YELLOW + 'Starting clean of documents, downloads and desktop...')
         time.sleep(5)
         print(Fore.GREEN + "Clean started. This could take up to two mins, depending on your computer's speed and the amount of files.")
@@ -122,21 +124,55 @@ class Cleaner:
                         new_path = os.path.join(self.junk,filename)
                         self.scanned += 1
                         if os.stat(from_path).st_size < self.new_minsize and time.time() - os.path.getmtime(from_path) > (self.new_minperiod) and self.junk not in from_path:
-                            shutil.move(from_path,self.junk)
-                            self.counter += 1
+                            self.paths.append(from_path)
                             f = open('log.txt','a')
                             f.write('\n')
                             f.write(from_path+' moved to '+new_path)
                             f.close()
-                            print(Fore.GREEN + (f'Moved {from_path} to {self.junk}'))
+                            self.counter += 1
+                            print(Fore.GREEN + (f'Found files which could be junk {from_path}'))
                         else:
                             #print(f'skipped {from_path}')
                             pass
                     except Exception as e:
                         print(Fore.RED + (f'Cannot move {from_path} reason: {e}'))
                         pass
-        print(Fore.YELLOW +(f'Scanned: {self.scanned} Moved: {self.counter}'))
-        exit()
+        print(Fore.YELLOW +(f'Scanned: {self.scanned} found file which could be junk {self.counter}'))
+        self.move()
+
+    def move(self):
+        try:
+            os.system('cls')
+            counter = 0
+            for i in self.paths:
+                counter += 1
+                print(Fore.YELLOW + (f'{counter}: {i}'))
+            n = input('Enter the number which you want to not move if you do not want to move anything hit enter: ')
+            new_n = int(n)
+            if new_n > counter:
+                print(Fore.RED + 'You need to put a valid number')
+                self.move()
+            if n == '':
+                self.move_dirs()
+            else:
+                g = self.paths[new_n - 1]
+                self.paths.remove(g)
+                self.move()
+        except ValueError as e:
+            print(Fore.RED + 'You cannot enter a word instead of a number')
+            self.move()
+    def move_dirs(self):
+        count = 0
+        print(Fore.YELLOW + 'Moving files to junk now')
+        for dirs in self.paths:
+            try:
+                shutil.move(dirs,self.junk)
+                print(Fore.GREEN + (f'Moved {dirs} to {self.junk}'))
+                count += 1
+            except Exception as e:
+                print(Fore.RED + (f'Couldnt move {dirs} due to: {e}'))
+                pass
+        print(Fore.YELLOW + (f'Finished moving {count} files to {self.junk}'))
 
     # (only works on Windows) Checks temp folder for trash temp files.
     def temp_it(self):
@@ -209,7 +245,6 @@ class Cleaner:
         g = open('log.txt','w+').close()
 if __name__ == '__main__':
     Cleaner()
-
 
 
 
