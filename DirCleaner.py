@@ -111,8 +111,7 @@ class Cleaner:
 
     # Goes through all files and subdirs in Documents, Desktop and Downloads looking for files which fit the filter.
     def cleaning(self):
-        paths = []
-        print(Fore.YELLOW + 'Starting clean of documents, downloads and desktop...')
+        print(Fore.YELLOW + 'Starting analysis of documents, downloads and desktop...')
         time.sleep(5)
         print(Fore.GREEN + "Clean started. This could take up to two mins, depending on your computer's speed and the amount of files.")
         time.sleep(1)
@@ -148,14 +147,10 @@ class Cleaner:
                 counter += 1
                 print(Fore.YELLOW + (f'{counter}: {i}'))
             n = input('Enter the number which you want to not move if you do not want to move anything hit enter: ')
-            new_n = int(n)
-            if new_n > counter:
-                print(Fore.RED + 'You need to put a valid number')
-                self.move()
             if n == '':
                 self.move_dirs()
             else:
-                g = self.paths[new_n - 1]
+                g = self.paths[int(n) - 1]
                 self.paths.remove(g)
                 self.move()
         except ValueError as e:
