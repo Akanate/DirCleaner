@@ -148,3 +148,5 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - README.md updated
 ##### 3.0.2 
 - No longer moves files straight allows the user to choose which files they dont want to move before continuing.
+##### 3.0.3
+- Fixed bug where you could not click enter to move the files after removing some of the files you dont want moving.
