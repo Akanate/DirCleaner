@@ -150,3 +150,5 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - No longer moves files straight allows the user to choose which files they dont want to move before continuing.
 ##### 3.0.3
 - Fixed bug where you could not click enter to move the files after removing some of the files you dont want moving.
+##### 3.0.5
+- Code cleanup made it so then if no files are found for junk it will exit.
