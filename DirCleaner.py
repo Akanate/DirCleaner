@@ -122,7 +122,7 @@ class Cleaner:
                         from_path = os.path.join(directory,filename)
                         new_path = os.path.join(self.junk,filename)
                         self.scanned += 1
-                        if os.stat(from_path).st_size < self.new_minsize and time.time() - os.path.getmtime(from_path) > (self.new_minperiod) and self.junk not in from_path:
+                        if os.stat(from_path).st_size < self.new_minsize and time.time() - os.path.getmtime(from_path) > (self.new_minperiod) and os.path.exists(new_path):
                             self.paths.append(from_path)
                             f = open('log.txt','a')
                             f.write('\n')
@@ -141,18 +141,21 @@ class Cleaner:
 
     def move(self):
         try:
-            os.system('cls')
-            counter = 0
-            for i in self.paths:
-                counter += 1
-                print(Fore.YELLOW + (f'{counter}: {i}'))
-            n = input('Enter the number which you want to not move if you do not want to move anything hit enter: ')
-            if n == '':
-                self.move_dirs()
+            if len(self.paths) != 0:
+                os.system('cls')
+                counter = 0
+                for i in self.paths:
+                    counter += 1
+                    print(Fore.YELLOW + (f'{counter}: {i}'))
+                n = input('Enter the number which you want to not move if you do not want to move anything hit enter: ')
+                if n == '':
+                    self.move_dirs()
+                else:
+                    g = self.paths[int(n) - 1]
+                    self.paths.remove(g)
+                    self.move()
             else:
-                g = self.paths[int(n) - 1]
-                self.paths.remove(g)
-                self.move()
+                print(Fore.RED + 'We could not find any files which were junk')
         except ValueError as e:
             print(Fore.RED + 'You cannot enter a word instead of a number')
             self.move()
