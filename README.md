@@ -104,7 +104,7 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 ### Make sure to rate!
 - Like this? Please star this project to show your support :)
 ### Update log
-- Make sure to consistently run update.py/.sh (depending on your OS).
+- Make sure to consistently run update.py 
 
 ##### 0.1.1
 - Fixed an error where function `junky` was spelt wrong on the move part of the search option.
