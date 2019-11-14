@@ -95,7 +95,7 @@ Make a new issue in the repo.
 ### What not to touch
 DO NOT, under any circumstances, touch the log files; these are used in the rollback feature.
 ### Updating
-Just run update.py to get the latest version on Windows. Run update.sh if you are on Linux/any other Unix-based OS.
+Just run update.py to get the latest version on Windows.
 ### How does it work?
 - The program goes through all the directories and subdirectories in Documents, Desktop and Downloads, looking for files which are over the minimum age set in `script.config` and are lower than the maximum size set in `script.config`. If it finds any, it moves them to the junk folder where they are stored until you decide if you want to empty the junk folder, rollback the process or search inside the junk to move some files out.
 ### Extra config
