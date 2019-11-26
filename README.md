@@ -152,3 +152,5 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Fixed bug where you could not click enter to move the files after removing some of the files you dont want moving.
 ##### 3.0.5
 - Code cleanup made it so then if no files are found for junk it will exit.
+##### 3.0.6
+- Simple change of the word clean to analysis when searching for files which class as junk.
