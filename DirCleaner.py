@@ -113,7 +113,7 @@ class Cleaner:
     def cleaning(self):
         print(Fore.YELLOW + 'Starting analysis of documents, downloads and desktop...')
         time.sleep(5)
-        print(Fore.GREEN + "Clean started. This could take up to two mins, depending on your computer's speed and the amount of files.")
+        print(Fore.GREEN + "Analysis started. This could take up to two mins, depending on your computer's speed and the amount of files.")
         time.sleep(1)
         for i in range(0,3):
             for directory, _, filenames in os.walk(self.listed[i]):        
