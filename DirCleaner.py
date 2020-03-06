@@ -122,7 +122,7 @@ class Cleaner:
                         from_path = os.path.join(directory,filename)
                         new_path = os.path.join(self.junk,filename)
                         self.scanned += 1
-                        if os.stat(from_path).st_size < self.new_minsize and time.time() - os.path.getmtime(from_path) > (self.new_minperiod) and os.path.exists(new_path):
+                        if os.stat(from_path).st_size < self.new_minsize and time.time() - os.path.getmtime(from_path) > (self.new_minperiod):
                             self.paths.append(from_path)
                             f = open('log.txt','a')
                             f.write('\n')
