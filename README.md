@@ -154,3 +154,5 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Code cleanup made it so then if no files are found for junk it will exit.
 ##### 3.0.6
 - Simple change of the word clean to analysis when searching for files which class as junk.
+##### 4.0.0
+- A change which completely fixed the cleaner check it out now it works lol.
