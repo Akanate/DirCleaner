@@ -114,6 +114,7 @@ class Cleaner:
             if contents != newer_contents:
                 print(Fore.YELLOW + 'New update available applying update')
                 print(f'{newer_contents}')
+                os.system('update.py')
             else:
                 print(Fore.GREEN + 'Most recent version installed. Continuing...')
 
