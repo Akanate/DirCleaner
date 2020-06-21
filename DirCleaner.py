@@ -44,11 +44,20 @@ class Cleaner:
         self.create()
          
     def create(self):
+        print('Hit')
         if os.path.exists(self.junk):
             self.arguments()
         else:
-            os.mkdir(self.junk)
-            self.arguments()
+            try:
+                new_junk = str(self.junk).replace('\\','/')
+                os.mkdir(new_junk)
+                self.arguments()
+            except Exception as e:
+                self.junk = os.path.expanduser('~/Documents/Junk')
+                if os.path.exists(self.junk):
+                    self.arguments()
+                else:
+                    os.mkdir(self.junk)
     # Argparser arguments.
     def arguments(self):
         parser = argparse.ArgumentParser(add_help=False)
@@ -116,13 +125,19 @@ class Cleaner:
         print(Fore.GREEN + "Analysis started. This could take up to two mins, depending on your computer's speed and the amount of files.")
         time.sleep(1)
         for i in range(0,3):
-            for directory, _, filenames in os.walk(self.listed[i]):        
+            for directory, _, filenames in os.walk(self.listed[i]):   
                 for filename in filenames:
                     try:
                         from_path = os.path.join(directory,filename)
                         new_path = os.path.join(self.junk,filename)
                         self.scanned += 1
-                        if os.stat(from_path).st_size < self.new_minsize and time.time() - os.path.getmtime(from_path) > (self.new_minperiod):
+                        print(time.time() - int(os.path.getmtime(from_path)))
+                        if int(os.stat(from_path).st_size) < self.new_minsize and time.time() - int(os.path.getmtime(from_path)) > (self.new_minperiod):
+                            from_path.replace('\\','/')
+                            g = from_path.split('\\')
+                            print(g)
+                            if "Junk" in g:
+                                continue
                             self.paths.append(from_path)
                             f = open('log.txt','a')
                             f.write('\n')
@@ -243,10 +258,3 @@ class Cleaner:
         g = open('log.txt','w+').close()
 if __name__ == '__main__':
     Cleaner()
-
-
-
-
-
-
-
