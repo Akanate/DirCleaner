@@ -44,7 +44,6 @@ class Cleaner:
         self.create()
          
     def create(self):
-        print('Hit')
         if os.path.exists(self.junk):
             self.arguments()
         else:
