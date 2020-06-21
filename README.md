@@ -160,3 +160,5 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Made it so if it cant find a desktop folder it will fallback to a documents folder instead.
 - Made it so that it wont check junk folder for junk files anymore.
 - The -u function will now update instead of you having to do it manually.
+##### 4.0.2
+- Had to get rid of -u being able to update the file as it didnt work due to the file itself being deleted by the update. It will now just check for updates.
