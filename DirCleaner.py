@@ -111,9 +111,8 @@ class Cleaner:
         with open('info.txt','r') as f:
             contents = f.read().strip()
             if contents != newer_contents:
-                print(Fore.YELLOW + 'New update available applying update')
+                print(Fore.YELLOW + 'New update available run python update.py to get it')
                 print(f'{newer_contents}')
-                os.system('python update.py')
             else:
                 print(Fore.GREEN + 'Most recent version installed. Continuing...')
 
