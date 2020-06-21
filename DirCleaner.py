@@ -23,6 +23,8 @@ class Cleaner:
         # Config variables.
         self.minperiod = config.get("MAIN", "minperiod")
         self.minsize = config.get("MAIN", "minsize")
+        self.extra_dir = config.get("MAIN","external_paths")
+        self.extra_paths = str(self.extra_dir)
         self.new_minsize = int(self.minsize)
         self.new_minperiod = int(self.minperiod)
         self.l = config.get("MAIN","wipelog")
@@ -47,16 +49,51 @@ class Cleaner:
         if os.path.exists(self.junk):
             self.arguments()
         else:
-            try:
-                new_junk = str(self.junk).replace('\\','/')
-                os.mkdir(new_junk)
+            print("Hit")
+            self.junk = os.path.expanduser('~/Documents/Junk')
+            if os.path.exists(self.junk):
+                print('Hit')
                 self.arguments()
-            except Exception as e:
-                self.junk = os.path.expanduser('~/Documents/Junk')
-                if os.path.exists(self.junk):
-                    self.arguments()
-                else:
-                    os.mkdir(self.junk)
+            else:
+                os.mkdir(self.junk)
+                self.arguments()
+
+    def extra_dirs(self):
+        print("Hit 1")
+        counter = 0
+        print(str(self.extra_dir))
+        if str(self.extra_dir) == "None":
+            print(Fore.YELLOW + "Found No Extra Paths continuing....")
+            self.cleaning()
+        else:
+            dict_ = list(str(self.extra_dir))
+            if "," in dict_:
+                splitted = self.extra_dir.split(',')
+                if len(splitted) > 1:
+                    for values in splitted:
+                        if os.path.exists(values):
+                            counter += 1
+                            time.sleep(1)
+                            print(Fore.GREEN + f'{values} is a valid path continuing....')
+                            self.listed.append(values)
+                        else:
+                            time.sleep(0.5)
+                            print(Fore.RED + f'{values} invalid path ignoring.....')
+                    print(Fore.GREEN + f'Continuing with {counter} extra paths')
+                    self.cleaning()
+            else:
+                try:
+                    if os.path.exists(self.extra_dir):
+                        print(Fore.GREEN + f"{self.extra_dir} is a valid path continuing")
+                        time.sleep(1)
+                        self.listed.append(str(self.extra_dirs))
+                        print(Fore.GREEN + "Continuing with 1 extra dir")
+                        self.cleaning()
+                except Exception as e:
+                    print(e)
+                    print(Fore.RED + f"{self.extra_dir} invalid path ignoring")
+                    self.cleaning()
+
     # Argparser arguments.
     def arguments(self):
         parser = argparse.ArgumentParser(add_help=False)
@@ -76,7 +113,7 @@ class Cleaner:
         elif args.e:
             self.empty()
         elif args.c:
-            self.cleaning()
+            self.extra_dirs()
         elif args.u:
             self.update_check()
         elif args.t:
@@ -111,8 +148,9 @@ class Cleaner:
         with open('info.txt','r') as f:
             contents = f.read().strip()
             if contents != newer_contents:
-                print(Fore.YELLOW + 'New update available run python update.py to get it')
+                print(Fore.YELLOW + 'New update available applying update')
                 print(f'{newer_contents}')
+                os.system('python update.py')
             else:
                 print(Fore.GREEN + 'Most recent version installed. Continuing...')
 
@@ -123,18 +161,21 @@ class Cleaner:
         time.sleep(5)
         print(Fore.GREEN + "Analysis started. This could take up to two mins, depending on your computer's speed and the amount of files.")
         time.sleep(1)
-        for i in range(0,3):
+        for i in range(0,len(self.listed)):
             for directory, _, filenames in os.walk(self.listed[i]):   
                 for filename in filenames:
                     try:
                         from_path = os.path.join(directory,filename)
                         new_path = os.path.join(self.junk,filename)
                         self.scanned += 1
-                        print(time.time() - int(os.path.getmtime(from_path)))
                         if int(os.stat(from_path).st_size) < self.new_minsize and time.time() - int(os.path.getmtime(from_path)) > (self.new_minperiod):
+                            print(os.stat(from_path).st_size)
                             from_path.replace('\\','/')
                             g = from_path.split('\\')
                             print(g)
+                            if os.stat(from_path).st_size < 100:
+                                print('Hit')
+                                continue
                             if "Junk" in g:
                                 continue
                             self.paths.append(from_path)
@@ -161,9 +202,16 @@ class Cleaner:
                 for i in self.paths:
                     counter += 1
                     print(Fore.YELLOW + (f'{counter}: {i}'))
-                n = input('Enter the number which you want to not move if you do not want to move anything hit enter: ')
-                if n == '':
-                    self.move_dirs()
+                n = input('Enter the number which you want to not move if you do not want to remove anything and start moving the files to junk then type START if not type exit: ')
+                if n == 'START':
+                    choice = input(f'Are you sure you want to move {self.counter} files to junk?')
+                    if choice == "Y":
+                        self.move_dirs()
+                    else:
+                        print(Fore.YELLOW + "EXITING!!!")
+                elif n == 'exit':
+                    print(Fore.YELLOW + "EXITING!!!")
+                    exit()
                 else:
                     g = self.paths[int(n) - 1]
                     self.paths.remove(g)
@@ -257,3 +305,4 @@ class Cleaner:
         g = open('log.txt','w+').close()
 if __name__ == '__main__':
     Cleaner()
+
