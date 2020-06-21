@@ -162,3 +162,7 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - The -u function will now update instead of you having to do it manually.
 ##### 4.0.2
 - Had to get rid of -u being able to update the file as it didnt work due to the file itself being deleted by the update. It will now just check for updates.
+##### 5.0.0 
+- Added new feature where you can add multiple new paths to search in external_paths in script.config seperated by commas or putting on own.
+- Due to this new feature there is more chance of people accidently moving system files so to counter this the files have to be above 100 bytes now.
+- Now before moving files to junk, you have to triple check before doing it with two inputs to check. This will lower the chances of people moving system files etc as they will be able to look first and check and remove the files they want. 
