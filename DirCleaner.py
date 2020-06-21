@@ -49,17 +49,14 @@ class Cleaner:
         if os.path.exists(self.junk):
             self.arguments()
         else:
-            print("Hit")
             self.junk = os.path.expanduser('~/Documents/Junk')
             if os.path.exists(self.junk):
-                print('Hit')
                 self.arguments()
             else:
                 os.mkdir(self.junk)
                 self.arguments()
 
     def extra_dirs(self):
-        print("Hit 1")
         counter = 0
         print(str(self.extra_dir))
         if str(self.extra_dir) == "None":
@@ -169,12 +166,9 @@ class Cleaner:
                         new_path = os.path.join(self.junk,filename)
                         self.scanned += 1
                         if int(os.stat(from_path).st_size) < self.new_minsize and time.time() - int(os.path.getmtime(from_path)) > (self.new_minperiod):
-                            print(os.stat(from_path).st_size)
                             from_path.replace('\\','/')
                             g = from_path.split('\\')
-                            print(g)
                             if os.stat(from_path).st_size < 100:
-                                print('Hit')
                                 continue
                             if "Junk" in g:
                                 continue
