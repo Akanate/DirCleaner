@@ -156,3 +156,6 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Simple change of the word clean to analysis when searching for files which class as junk.
 ##### 4.0.0
 - A change which completely fixed the cleaner check it out now it works lol.
+##### 4.0.1
+- Made it so if it cant find a desktop folder it will fallback to a documents folder instead.
+- Fixed a few bugs.
