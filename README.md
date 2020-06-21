@@ -159,3 +159,4 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 ##### 4.0.1
 - Made it so if it cant find a desktop folder it will fallback to a documents folder instead.
 - Made it so that it wont check junk folder for junk files anymore.
+- The -u function will now update instead of you having to do it manually.
