@@ -87,7 +87,6 @@ class Cleaner:
                         print(Fore.GREEN + "Continuing with 1 extra dir")
                         self.cleaning()
                 except Exception as e:
-                    print(e)
                     print(Fore.RED + f"{self.extra_dir} invalid path ignoring")
                     self.cleaning()
 
