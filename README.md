@@ -166,3 +166,5 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Added new feature where you can add multiple new paths to search in external_paths in script.config seperated by commas or putting on own.
 - Due to this new feature there is more chance of people accidently moving system files so to counter this the files have to be above 100 bytes now.
 - Now before moving files to junk, you have to triple check before doing it with two inputs to check. This will lower the chances of people moving system files etc as they will be able to look first and check and remove the files they want. 
+##### 5.0.1
+- It will no longer try to rollback if you have already rolled back.
