@@ -280,6 +280,10 @@ class Cleaner:
     #Reverses changes made by the program.
     def rollback(self):
         log_file = open('log.txt','r')
+        contents = log_file.read()
+        if contents == "":
+            print(Fore.RED + "Rollback process not possible as it has already been done!")
+            return
         print(Fore.GREEN + 'Starting rollback process')
         for line in log_file:
             try:
@@ -295,7 +299,10 @@ class Cleaner:
             except Exception as e:
                 print(Fore.GREEN + (f'Could not move {new} to {newed} due to: {e}'))
                 pass
-        g = open('log.txt','w+').close()
+        g = open('log.txt','a')
+        g.truncate()
 if __name__ == '__main__':
     Cleaner()
+
+
 
