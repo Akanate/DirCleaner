@@ -5,15 +5,19 @@ import time
 import glob 
 import datetime
 import sys
+import winshell
 import configparser 
 import requests 
 import argparse 
 import colorama
+from win32com.shell import shell,shellcon
+import os
 from colorama import Fore, Back, Style
 from colorama import init 
 import art
 from art import tprint
 from os.path import expanduser
+from datetime import datetime
 init()
 class Cleaner:
     def __init__(self):
@@ -27,7 +31,10 @@ class Cleaner:
         self.extra_paths = str(self.extra_dir)
         self.new_minsize = int(self.minsize)
         self.new_minperiod = int(self.minperiod)
-        self.l = config.get("MAIN","wipelog")
+        self.recycle_bin = os.path.expanduser("C:/$Recycle.bin")
+        self.formats = ['.txt','.doc','.docx','.rtf']
+        self.times_array = []
+        self.check = 0
         # Path variables.
         self.junk = os.path.expanduser('~/Desktop/junk')
         self.desktop = os.path.expanduser('~/Desktop')
@@ -49,6 +56,7 @@ class Cleaner:
         if os.path.exists(self.junk):
             self.arguments()
         else:
+            self.check +=1
             self.junk = os.path.expanduser('~/Documents/Junk')
             if os.path.exists(self.junk):
                 self.arguments()
@@ -58,7 +66,6 @@ class Cleaner:
 
     def extra_dirs(self):
         counter = 0
-        print(str(self.extra_dir))
         if str(self.extra_dir) == "None":
             print(Fore.YELLOW + "Found No Extra Paths continuing....")
             self.cleaning()
@@ -100,6 +107,7 @@ class Cleaner:
         parser.add_argument('-u',action='store_true',help='Checks for updates.')
         parser.add_argument('-t',action='store_true',help='Wipes temp files.')
         parser.add_argument('-j',action='store_true',help='This will make the junk file needed for the -c option')
+        parser.add_argument('-reset',action='store_true',help='Emergency restore goes into recycling bin and restores the most recent deleted files by this program.')
         parser.add_argument('--help',action="help",help='Help page.')
         args = parser.parse_args()
         if args.r:
@@ -116,6 +124,8 @@ class Cleaner:
             self.temp_it()
         elif args.j:
             self.junky()
+        elif args.reset:
+            self.restore()
         if len(sys.argv[0]) != 1:
             print('Do python DirCleaner.py --help to see the options.')
 
@@ -127,6 +137,7 @@ class Cleaner:
             print(Fore.YELLOW + 'Making junk folder for you')
             os.mkdir(self.junk)
             exit()
+
     # Checks for updates by checking the Github repo.
     def update_check(self):
         print(Fore.YELLOW + 'Checking for updates...')
@@ -152,6 +163,10 @@ class Cleaner:
 
     # Goes through all files and subdirs in Documents, Desktop and Downloads looking for files which fit the filter.
     def cleaning(self):
+        if self.check == 1:
+            junked = os.path.expanduser('~/Documents/Junk')
+        else:
+            junked = os.path.expanduser('~/Desktop/Junk')
         print(Fore.YELLOW + 'Starting analysis of documents, downloads and desktop...')
         time.sleep(5)
         print(Fore.GREEN + "Analysis started. This could take up to two mins, depending on your computer's speed and the amount of files.")
@@ -161,24 +176,29 @@ class Cleaner:
                 for filename in filenames:
                     try:
                         from_path = os.path.join(directory,filename)
-                        new_path = os.path.join(self.junk,filename)
+                        new_path = os.path.join(junked,filename)
                         self.scanned += 1
-                        if int(os.stat(from_path).st_size) < self.new_minsize and time.time() - int(os.path.getmtime(from_path)) > (self.new_minperiod):
+                        if int(os.stat(from_path).st_size) < self.new_minsize and self.new_minperiod < time.time() - os.path.getmtime(from_path):
                             from_path.replace('\\','/')
                             g = from_path.split('\\')
-                            if os.stat(from_path).st_size < 100:
-                                continue
-                            if "Junk" in g:
-                                continue
-                            self.paths.append(from_path)
-                            f = open('log.txt','a')
-                            f.write('\n')
-                            f.write(from_path+' moved to '+new_path)
-                            f.close()
-                            self.counter += 1
-                            print(Fore.GREEN + (f'Found files which could be junk {from_path}'))
+                            if from_path.lower().endswith(('.txt','.rtf','.doc','.docx')):
+                                if os.stat(from_path).st_size < 100:
+                                    continue
+                                if "Junk" in g:
+                                    continue
+                                self.paths.append(from_path)
+                                f = open('log.txt','a')
+                                a = open('restore.txt','a')
+                                f.write('\n')
+                                f.write(from_path+' moved to '+new_path)
+                                a.write('\n')
+                                a.write(new_path+','+from_path)
+                                a.close()
+                                f.close()
+                                self.counter += 1
+                                print(Fore.GREEN + (f'Found files which could be junk {from_path}'))
                         else:
-                            #print(f'skipped {from_path}')
+                            #print(Fore.RED + f'skipped {from_path} size:{os.stat(from_path).st_size} age:{time.time() - os.path.getmtime(from_path)}')
                             pass
                     except Exception as e:
                         print(Fore.RED + (f'Cannot move {from_path} reason: {e}'))
@@ -196,8 +216,8 @@ class Cleaner:
                     print(Fore.YELLOW + (f'{counter}: {i}'))
                 n = input('Enter the number which you want to not move if you do not want to remove anything and start moving the files to junk then type START if not type exit: ')
                 if n == 'START':
-                    choice = input(f'Are you sure you want to move {self.counter} files to junk? y/n: ')
-                    if choice.upper() == "Y":
+                    choice = input(f'Are you sure you want to move {self.counter} files to junk? Y/N')
+                    if choice == "Y":
                         self.move_dirs()
                     else:
                         print(Fore.YELLOW + "EXITING!!!")
@@ -264,26 +284,40 @@ class Cleaner:
 
     # Clears the junk.
     def empty(self):
+        if self.check > 0:
+            junk1 = os.path.expanduser('~/Documents/Junk')
+        else:
+            junk1 = os.path.expanduser('~/Desktop/Junk')
         print(Fore.GREEN +'Emptying the junk folder...')
-        for directory, _, filename in os.walk(self.junk):
+        for directory, _, filename in os.walk(junk1):
             for i in filename:
                 try:
                     joined = os.path.join(directory,i)
-                    os.remove(joined)
+                    self.recycle(joined)
                     print(Fore.GREEN + (f'Removed {joined}.'))
                 except Exception as e:
-                    print(Fore.RED + (f'Could not delete {joined} due to: {e}'))
+                    print(Fore.RED + (f'Could not delete {joined}'))
                     pass
         print(Fore.GREEN + 'Finished.')
+        g = open('log.txt','w+').close()
         exit()
+
     #Reverses changes made by the program.
+    def check_rollback(self):
+        t = open('log.txt','r')
+        contents = t.read()
+        if contents == "":
+            return 1
+        else:
+            return
     def rollback(self):
         log_file = open('log.txt','r')
-        contents = log_file.read()
-        if contents == "":
-            print(Fore.RED + "Rollback process not possible as it has already been done!")
+        print(Fore.YELLOW + 'Checking rollback file.....')
+        value = self.check_rollback()
+        if value == 1:
+            print(Fore.RED + 'Rollback file is empty cancelling rollback....')
             return
-        print(Fore.GREEN + 'Starting rollback process')
+        print(Fore.GREEN + 'Starting rollback process....')
         for line in log_file:
             try:
                 lined = line.strip()
@@ -298,10 +332,49 @@ class Cleaner:
             except Exception as e:
                 print(Fore.GREEN + (f'Could not move {new} to {newed} due to: {e}'))
                 pass
-        g = open('log.txt','a')
+        g = open('log.txt','w+')
         g.truncate()
+
+    def backup(self):
+        restore_file = open("restore.txt",'r')
+        contents = restore_file.read()
+        file_name = "restore_backup" + str(datetime.now().strftime('%Y_%m_%d_%H_%M_%S')) + '.txt'
+        with open(file_name,'a') as backup_file:
+            print(Fore.YELLOW + f'Backup file created {file_name} use this to restore files if loss of power etc copy this into the restore.txt file.')
+            backup_file.write(contents)
+
+    def restore(self):
+        restore_file = open("restore.txt",'r')
+        self.backup()
+        for files in restore_file:
+            try:
+                splitted = files.split(',')
+                new_file = splitted[0]
+                if len(splitted) != 2:
+                    continue
+                filed = new_file.rstrip('\n')
+                filepath = os.path.abspath(filed)
+                new_file1 = splitted[1]
+                filed2 = new_file1.rstrip('\n')
+                new_filepath = os.path.abspath(filed2)
+                winshell.undelete(filepath)
+                print(Fore.GREEN + f'Restored file > {filed}')
+                shutil.move(filepath,new_filepath)
+                print(Fore.MAGENTA + f'Moving back to original position {splitted[1]}')
+            except Exception as e:
+                print(Fore.RED + f"Failed to restore file {filed}")
+        open("restore.txt",'w+').close()
+    
+    def recycle(self,filename):
+        try:
+            if not os.path.exists(filename):
+                return True
+            res= shell.SHFileOperation((0,shellcon.FO_DELETE,filename,None, shellcon.FOF_SILENT | shellcon.FOF_ALLOWUNDO | shellcon.FOF_NOCONFIRMATION,None,None))
+            if not res[1]:
+                os.remove(filename)
+        except Exception as e:
+            pass
+            
+
 if __name__ == '__main__':
     Cleaner()
-
-
-
