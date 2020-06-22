@@ -91,7 +91,7 @@ Then type in what you want to search and click enter.
 
 The newest feature out of the bunch the -reset feature this is a very important feature and is used for emergency circumstances such as you deleted loads of files you didnt mean too. The reset feature will get all the most recent files you deleted using this program and use recycle bin to try to restore them. And it will also make a backup for you so if you cancel halfway through you can go into the backup file and copy paste it into the restore .txt and run the command. And it will restore that backup if possible.
 
-<img src="/assets/Capture.png" alt="Capture">
+<img src="/assets/Capture.PNG" alt="Capture">
 
 
 Thats it on how to use the features :)
