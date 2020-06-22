@@ -197,8 +197,8 @@ class Cleaner:
                     print(Fore.YELLOW + (f'{counter}: {i}'))
                 n = input('Enter the number which you want to not move if you do not want to remove anything and start moving the files to junk then type START if not type exit: ')
                 if n == 'START':
-                    choice = input(f'Are you sure you want to move {self.counter} files to junk?')
-                    if choice == "Y":
+                    choice = input(f'Are you sure you want to move {self.counter} files to junk? y/n: ')
+                    if choice.upper() == "Y":
                         self.move_dirs()
                     else:
                         print(Fore.YELLOW + "EXITING!!!")
