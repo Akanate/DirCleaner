@@ -105,7 +105,8 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Like this? Please star this project to show your support :)
 ### Update log
 - Make sure to consistently run update.py 
-
+### script.config
+- Only touch this if you know what you are doing this tells the program how old the files have to be and the age of the files to be classed as junk as default it is set to 100bytes min size and 3 months old min time. 
 ##### 0.1.1
 - Fixed an error where function `junky` was spelt wrong on the move part of the search option.
 ##### 0.2.0
