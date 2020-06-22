@@ -106,7 +106,7 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 ### Update log
 - Make sure to consistently run update.py 
 ### script.config
-- Only touch this if you know what you are doing this tells the program how old the files have to be and the age of the files to be classed as junk as default it is set to 100bytes min size and 3 months old min time. 
+- Only touch this if you know what you are doing this tells the program how old the files have to be and the age of the files to be classed as junk as default it is set to 100bytes min size and 3 months old min time. It also has an external_paths option in it if you put a path/paths in here(if multiple seperate them by comma) then it will search through them as well as the default ones be wary though if system files are on that part it may mistake them for junk. So make sure if it finds any you check thoroughly that it isnt anything key to a game or to the system. 
 ##### 0.1.1
 - Fixed an error where function `junky` was spelt wrong on the move part of the search option.
 ##### 0.2.0
