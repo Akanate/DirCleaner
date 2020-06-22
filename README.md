@@ -89,7 +89,7 @@ Then type in what you want to search and click enter.
 <img src="/assets/search_info.jpg" alt="searched1">
 
 
-The newest feature out of the bunch the -reset feature this is a very important feature and is used for emergency circumstances such as you deleted loads of files you didnt mean too. The reset feature will get all the most recent files you deleted using this program and use recycle bin to try to restore them. And it will also make a backup for you so if you cancel halfway through you can go into the backup file and copy paste it into the restore .txt and run the command. And it will restore that backup if possible.
+The newest feature out of the bunch the -reset feature this is a very important feature and is used for emergency circumstances such as you deleted loads of files you didnt mean too. The reset feature will get all the most recent files you deleted using this program and use recycle bin to try to restore and move them back. And it will also make a backup for you so if you cancel halfway through you can go into the backup file and copy paste it into the restore .txt and run the command. And it will restore that backup if possible.
 
 <img src="/assets/Capture.PNG" alt="Capture">
 
@@ -174,3 +174,9 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 - Now before moving files to junk, you have to triple check before doing it with two inputs to check. This will lower the chances of people moving system files etc as they will be able to look first and check and remove the files they want. 
 ##### 5.0.1
 - It will no longer try to rollback if you have already rolled back.
+##### 5.0.2
+- Fixed the timestamps will definately get files over three months now.
+- Made it so the program now only detects certain file extensions to stop the risk of someone deleting something really important.
+- You can no longer search for files below 100 bytes.
+- Restore feature added even after deletion of files you can restore them now and get them moved back to their original postion.
+With the restore feature you also get a backup file made with it which you can copy paste into restore.txt and run python DirCleaner.py -reset and it will try to restore them and move them back if it is still valid.
