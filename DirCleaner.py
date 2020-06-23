@@ -107,7 +107,7 @@ class Cleaner:
         parser.add_argument('-u',action='store_true',help='Checks for updates.')
         parser.add_argument('-t',action='store_true',help='Wipes temp files.')
         parser.add_argument('-j',action='store_true',help='This will make the junk file needed for the -c option')
-        parser.add_argument('-reset',action='store_true',help='Emergency restore goes into recycling bin and restores the most recent deleted files by this program.')
+        parser.add_argument('-restore',action='store_true',help='Emergency restore goes into recycling bin and restores the most recent deleted files by this program.')
         parser.add_argument('--help',action="help",help='Help page.')
         args = parser.parse_args()
         if args.r:
