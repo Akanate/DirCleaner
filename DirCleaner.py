@@ -141,7 +141,7 @@ class Cleaner:
     # Checks for updates by checking the Github repo.
     def update_check(self):
         print(Fore.YELLOW + 'Checking for updates...')
-        contents = requests.get('https://raw.githubusercontent.com/WHYSOEASY/DirCleaner/master/info.txt')
+        contents = requests.get('https://raw.githubusercontent.com/Akanate/DirCleaner/master/info.txt')
         contented = contents.content
         new_contents = contented.decode()
         newer_contents1 = new_contents.strip()
