@@ -180,3 +180,5 @@ But be wary, the configuration for the age of the files is in seconds so if you 
 With the restore feature you also get a backup file made with it which you can copy paste into restore.txt and run python DirCleaner.py -reset and it will try to restore them and move them back if it is still valid.
 ##### 5.0.3
 - "-reset" has now been changed to "-restore".
+##### 5.0.4
+- Fixed mistype which stopped you being able to use 1 external path on its own.
