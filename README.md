@@ -182,3 +182,4 @@ With the restore feature you also get a backup file made with it which you can c
 - "-reset" has now been changed to "-restore".
 ##### 5.0.4
 - Fixed mistype which stopped you being able to use 1 external path on its own.
+- Fixed the -u as it wasnt working due to update of username.
