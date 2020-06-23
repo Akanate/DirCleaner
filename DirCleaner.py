@@ -49,7 +49,7 @@ class Cleaner:
 
     def banner(self):
         tprint('DirCleaner')
-        print(Fore.LIGHTMAGENTA_EX + 'Made by WHYSOEASY')
+        print(Fore.LIGHTMAGENTA_EX + 'Made by Akanate')
         self.create()
          
     def create(self):
