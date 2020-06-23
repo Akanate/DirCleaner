@@ -98,7 +98,7 @@ Thats it on how to use the features :)
 ### Reporting bugs
 Make a new issue in the repo.
 ### What not to touch
-DO NOT, under any circumstances, touch the log files; these are used in the rollback feature.
+DO NOT, under any circumstances, touch the log files/restore files; these are used in the rollback/restore features.
 ### Updating
 Just run update.py to get the latest version on Windows.
 ### How does it work?
