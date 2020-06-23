@@ -124,7 +124,7 @@ class Cleaner:
             self.temp_it()
         elif args.j:
             self.junky()
-        elif args.reset:
+        elif args.restore:
             self.restore()
         if len(sys.argv[0]) != 1:
             print('Do python DirCleaner.py --help to see the options.')
