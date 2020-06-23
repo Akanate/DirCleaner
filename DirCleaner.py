@@ -90,7 +90,7 @@ class Cleaner:
                     if os.path.exists(self.extra_dir):
                         print(Fore.GREEN + f"{self.extra_dir} is a valid path continuing")
                         time.sleep(1)
-                        self.listed.append(str(self.extra_dirs))
+                        self.listed.append(str(self.extra_dir))
                         print(Fore.GREEN + "Continuing with 1 extra dir")
                         self.cleaning()
                 except Exception as e:
