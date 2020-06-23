@@ -105,13 +105,11 @@ Just run update.py to get the latest version on Windows.
 - The program goes through all the directories and subdirectories in Documents, Desktop and Downloads, looking for files which are over the minimum age set in `script.config` and are lower than the maximum size set in `script.config`. If it finds any, it moves them to the junk folder where they are stored until you decide if you want to empty the junk folder, rollback the process or search inside the junk to move some files out.
 ### Extra config
 - If you want to change the configuration of what files are classed as junk, go to `script.config` and change the config for it.
-But be wary, the configuration for the age of the files is in seconds so if you want to change it you need to put it in seconds. By default it is set 3 months to stop the risk of moving important files and set to 100 bytes.
+But be wary, the configuration for the age of the files is in seconds so if you want to change it you need to put it in seconds. By default it is set 3 months to stop the risk of moving important files and set to 100 bytes. It also has an external_paths option in it if you put a path/paths in here(if multiple seperate them by comma) then it will search through them as well as the default ones be wary though if system files are on that path, it may mistake them for junk. So make sure if it finds any "junk" you check thoroughly that it isnt anything key to a game or to the system. 
 ### Make sure to rate!
 - Like this? Please star this project to show your support :)
 ### Update log
 - Make sure to consistently run update.py 
-### script.config
-- Only touch this if you know what you are doing this tells the program how old the files have to be and the age of the files to be classed as junk as default it is set to 100bytes min size and 3 months old min time. It also has an external_paths option in it if you put a path/paths in here(if multiple seperate them by comma) then it will search through them as well as the default ones be wary though if system files are on that path, it may mistake them for junk. So make sure if it finds any "junk" you check thoroughly that it isnt anything key to a game or to the system. 
 ##### 0.1.1
 - Fixed an error where function `junky` was spelt wrong on the move part of the search option.
 ##### 0.2.0
